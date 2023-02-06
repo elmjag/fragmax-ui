@@ -1,0 +1,34 @@
+* Samples
+
+* Data Analysis
+ - Process
+ - Refine
+ - Fit Ligands
+ - PanDDA
+
+* PanDDA
+ - Analyse
+ - Inspect
+
+* Results
+ - Download
+
+* Project
+ - Samples
+ - PDBs
+ - Details
+ - Settings
+
+* Libraries
+
+* Jobs Status
+
+* Logout
+
+
+Remove ?:
+x
+ Fragments
+ 
+
+
