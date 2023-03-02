@@ -1,13 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://3.svg" type="Texture" id=1]
 [ext_resource path="res://control.gd" type="Script" id=2]
 [ext_resource path="res://crystal0.jpeg" type="Texture" id=3]
 [ext_resource path="res://dozor.png" type="Texture" id=4]
+[ext_resource path="res://Roboto-Black.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://expand.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+font_data = ExtResource( 5 )
+
+[sub_resource type="ButtonGroup" id=2]
+
+[sub_resource type="ButtonGroup" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
 script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -15,17 +27,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.286275, 0.592157, 0.564706, 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+[node name="Logo" type="Control" parent="ColorRect"]
+anchor_left = 0.02
+anchor_top = 0.045
+anchor_right = 0.02
+anchor_bottom = 0.045
+margin_left = 10.4
+margin_top = -13.2
+margin_right = 111.4
+margin_bottom = 86.8
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/Logo"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="Menus" type="VBoxContainer" parent="ColorRect/HBoxContainer"]
-margin_right = 98.0
-margin_bottom = 600.0
-
-[node name="TextureRect" type="TextureRect" parent="ColorRect/HBoxContainer/Menus"]
-margin_right = 64.0
-margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -33,287 +47,829 @@ texture = ExtResource( 1 )
 expand = true
 stretch_mode = 1
 
-[node name="Samples" type="Button" parent="ColorRect/HBoxContainer/Menus"]
-margin_top = 68.0
-margin_right = 98.0
-margin_bottom = 88.0
+[node name="Menus" type="Control" parent="ColorRect"]
+margin_left = 14.0
+margin_top = 151.0
+margin_right = 175.0
+margin_bottom = 556.0
+
+[node name="Menus" type="VBoxContainer" parent="ColorRect/Menus"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Samples" type="Button" parent="ColorRect/Menus/Menus"]
+margin_right = 161.0
+margin_bottom = 20.0
 text = "Samples"
 
-[node name="DataAnalysis" type="Button" parent="ColorRect/HBoxContainer/Menus"]
-margin_top = 92.0
-margin_right = 98.0
-margin_bottom = 112.0
+[node name="DataAnalysis" type="Button" parent="ColorRect/Menus/Menus"]
+margin_top = 24.0
+margin_right = 161.0
+margin_bottom = 44.0
 text = "Data Analysis"
 
-[node name="DataAnalysisSubmenu" type="HBoxContainer" parent="ColorRect/HBoxContainer/Menus"]
+[node name="DataAnalysisSubmenu" type="HBoxContainer" parent="ColorRect/Menus/Menus"]
 visible = false
 margin_top = 116.0
 margin_right = 98.0
 margin_bottom = 208.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/HBoxContainer/Menus/DataAnalysisSubmenu"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu"]
 margin_right = 10.0
 margin_bottom = 92.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer/Menus/DataAnalysisSubmenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu"]
 margin_left = 14.0
 margin_right = 98.0
 margin_bottom = 92.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="ColorRect/HBoxContainer/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="Button" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_right = 84.0
 margin_bottom = 20.0
 text = "Process"
 
-[node name="Button2" type="Button" parent="ColorRect/HBoxContainer/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="Button2" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_top = 24.0
 margin_right = 84.0
 margin_bottom = 44.0
 text = "Refine"
 
-[node name="Button3" type="Button" parent="ColorRect/HBoxContainer/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="Button3" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_top = 48.0
 margin_right = 84.0
 margin_bottom = 68.0
 text = "Fit Ligands"
 
-[node name="Button4" type="Button" parent="ColorRect/HBoxContainer/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="Button4" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_top = 72.0
 margin_right = 84.0
 margin_bottom = 92.0
 text = "PanDDA"
 
-[node name="PanDDA" type="Button" parent="ColorRect/HBoxContainer/Menus"]
-margin_top = 116.0
-margin_right = 98.0
-margin_bottom = 136.0
+[node name="PanDDA" type="Button" parent="ColorRect/Menus/Menus"]
+margin_top = 48.0
+margin_right = 161.0
+margin_bottom = 68.0
 text = "PanDDA"
 
-[node name="PanDDASubmenu" type="HBoxContainer" parent="ColorRect/HBoxContainer/Menus"]
+[node name="PanDDASubmenu" type="HBoxContainer" parent="ColorRect/Menus/Menus"]
 visible = false
 margin_top = 140.0
 margin_right = 98.0
 margin_bottom = 184.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/HBoxContainer/Menus/PanDDASubmenu"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/PanDDASubmenu"]
 margin_right = 10.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer/Menus/PanDDASubmenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/PanDDASubmenu"]
 margin_left = 14.0
 margin_right = 98.0
 margin_bottom = 44.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="ColorRect/HBoxContainer/Menus/PanDDASubmenu/VBoxContainer"]
+[node name="Button" type="Button" parent="ColorRect/Menus/Menus/PanDDASubmenu/VBoxContainer"]
 margin_right = 84.0
 margin_bottom = 20.0
 text = "Analyse"
 
-[node name="Button2" type="Button" parent="ColorRect/HBoxContainer/Menus/PanDDASubmenu/VBoxContainer"]
+[node name="Button2" type="Button" parent="ColorRect/Menus/Menus/PanDDASubmenu/VBoxContainer"]
 margin_top = 24.0
 margin_right = 84.0
 margin_bottom = 44.0
 text = "Inspect"
 
-[node name="Results" type="Button" parent="ColorRect/HBoxContainer/Menus"]
-margin_top = 140.0
-margin_right = 98.0
-margin_bottom = 160.0
+[node name="Results" type="Button" parent="ColorRect/Menus/Menus"]
+margin_top = 72.0
+margin_right = 161.0
+margin_bottom = 92.0
 text = "Results"
 
-[node name="ResultsSubmenu" type="HBoxContainer" parent="ColorRect/HBoxContainer/Menus"]
+[node name="ResultsSubmenu" type="HBoxContainer" parent="ColorRect/Menus/Menus"]
 visible = false
 margin_top = 164.0
 margin_right = 98.0
 margin_bottom = 184.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/HBoxContainer/Menus/ResultsSubmenu"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/ResultsSubmenu"]
 margin_right = 10.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer/Menus/ResultsSubmenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/ResultsSubmenu"]
 margin_left = 14.0
 margin_right = 98.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="ColorRect/HBoxContainer/Menus/ResultsSubmenu/VBoxContainer"]
+[node name="Button" type="Button" parent="ColorRect/Menus/Menus/ResultsSubmenu/VBoxContainer"]
 margin_right = 84.0
 margin_bottom = 20.0
 text = "Download"
 
-[node name="Project" type="Button" parent="ColorRect/HBoxContainer/Menus"]
-margin_top = 164.0
-margin_right = 98.0
-margin_bottom = 184.0
+[node name="Project" type="Button" parent="ColorRect/Menus/Menus"]
+margin_top = 96.0
+margin_right = 161.0
+margin_bottom = 116.0
 text = "Project"
 
-[node name="ProjectSubmenu" type="HBoxContainer" parent="ColorRect/HBoxContainer/Menus"]
+[node name="ProjectSubmenu" type="HBoxContainer" parent="ColorRect/Menus/Menus"]
 visible = false
 margin_top = 188.0
 margin_right = 98.0
 margin_bottom = 280.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/HBoxContainer/Menus/ProjectSubmenu"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/ProjectSubmenu"]
 margin_right = 10.0
 margin_bottom = 92.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer/Menus/ProjectSubmenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/ProjectSubmenu"]
 margin_left = 14.0
 margin_right = 98.0
 margin_bottom = 92.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="ColorRect/HBoxContainer/Menus/ProjectSubmenu/VBoxContainer"]
+[node name="Button" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
 margin_right = 84.0
 margin_bottom = 20.0
 text = "Samples"
 
-[node name="Button2" type="Button" parent="ColorRect/HBoxContainer/Menus/ProjectSubmenu/VBoxContainer"]
+[node name="Button2" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
 margin_top = 24.0
 margin_right = 84.0
 margin_bottom = 44.0
 text = "PDBs"
 
-[node name="Button3" type="Button" parent="ColorRect/HBoxContainer/Menus/ProjectSubmenu/VBoxContainer"]
+[node name="Button3" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
 margin_top = 48.0
 margin_right = 84.0
 margin_bottom = 68.0
 text = "Details"
 
-[node name="Button4" type="Button" parent="ColorRect/HBoxContainer/Menus/ProjectSubmenu/VBoxContainer"]
+[node name="Button4" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
 margin_top = 72.0
 margin_right = 84.0
 margin_bottom = 92.0
 text = "Settings"
 
-[node name="Libraries" type="Button" parent="ColorRect/HBoxContainer/Menus"]
-margin_top = 188.0
-margin_right = 98.0
-margin_bottom = 208.0
+[node name="Libraries" type="Button" parent="ColorRect/Menus/Menus"]
+margin_top = 120.0
+margin_right = 161.0
+margin_bottom = 140.0
 text = "Libraries"
 
-[node name="JobsStatus" type="Button" parent="ColorRect/HBoxContainer/Menus"]
-margin_top = 212.0
-margin_right = 98.0
-margin_bottom = 232.0
+[node name="JobsStatus" type="Button" parent="ColorRect/Menus/Menus"]
+margin_top = 144.0
+margin_right = 161.0
+margin_bottom = 164.0
 text = "Jobs Status"
 
-[node name="Logout" type="Button" parent="ColorRect/HBoxContainer/Menus"]
-margin_top = 236.0
-margin_right = 98.0
-margin_bottom = 256.0
+[node name="Logout" type="Button" parent="ColorRect/Menus/Menus"]
+margin_top = 168.0
+margin_right = 161.0
+margin_bottom = 188.0
 text = "Logout"
 
-[node name="SamplesPaneX" type="CenterContainer" parent="ColorRect/HBoxContainer"]
+[node name="Panes" type="Control" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 211.0
+margin_top = 69.0
+margin_right = -23.0
+margin_bottom = -15.0
+
+[node name="SamplesPane" type="VBoxContainer" parent="ColorRect/Panes"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Headers" type="HBoxContainer" parent="ColorRect/Panes/SamplesPane"]
+margin_right = 1046.0
+margin_bottom = 22.0
+
+[node name="crystal" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+margin_right = 100.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "crystal"
+
+[node name="run" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+margin_left = 104.0
+margin_right = 136.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 32, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "run"
+
+[node name="processing" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+margin_left = 140.0
+margin_right = 230.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 90, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "processing"
+
+[node name="refinement" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+margin_left = 234.0
+margin_right = 325.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 90, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "refinement"
+
+[node name="resolution" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+margin_left = 329.0
+margin_right = 419.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 90, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "resolution"
+
+[node name="picture" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+margin_left = 423.0
+margin_right = 483.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 60, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "picture"
+
+[node name="dozer" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+margin_left = 487.0
+margin_right = 533.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 1 )
+text = "dozer"
+
+[node name="row1" type="HBoxContainer" parent="ColorRect/Panes/SamplesPane"]
+margin_top = 26.0
+margin_right = 1046.0
+margin_bottom = 58.0
+
+[node name="expand" type="Button" parent="ColorRect/Panes/SamplesPane/row1"]
+margin_right = 20.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 20, 0 )
+text = "+"
+script = ExtResource( 6 )
+
+[node name="crystal" type="Label" parent="ColorRect/Panes/SamplesPane/row1"]
+margin_left = 24.0
+margin_top = 9.0
+margin_right = 124.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+text = "MID2-X0251"
+
+[node name="run" type="Label" parent="ColorRect/Panes/SamplesPane/row1"]
+margin_left = 128.0
+margin_top = 9.0
+margin_right = 160.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 32, 0 )
+text = "1"
+
+[node name="processing" type="Label" parent="ColorRect/Panes/SamplesPane/row1"]
+margin_left = 164.0
+margin_top = 9.0
+margin_right = 254.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "XIA2/XDS"
+
+[node name="refinement" type="Label" parent="ColorRect/Panes/SamplesPane/row1"]
+margin_left = 258.0
+margin_top = 9.0
+margin_right = 348.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "DIMPLE"
+
+[node name="resolution" type="Label" parent="ColorRect/Panes/SamplesPane/row1"]
+margin_left = 352.0
+margin_top = 9.0
+margin_right = 442.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "1.70"
+
+[node name="picture" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row1"]
+margin_left = 446.0
+margin_right = 506.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 60, 0 )
+
+[node name="picture" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row1/picture"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="dozer" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row1"]
+margin_left = 510.0
+margin_right = 542.0
+margin_bottom = 32.0
+
+[node name="dozer" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row1/dozer"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="row1option1" type="HBoxContainer" parent="ColorRect/Panes/SamplesPane"]
 visible = false
-margin_left = 102.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_top = 62.0
+margin_right = 1046.0
+margin_bottom = 94.0
+
+[node name="selected" type="CheckBox" parent="ColorRect/Panes/SamplesPane/row1option1"]
+margin_right = 40.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 40, 0 )
+pressed = true
+group = SubResource( 2 )
+
+[node name="crystal" type="Label" parent="ColorRect/Panes/SamplesPane/row1option1"]
+margin_left = 44.0
+margin_top = 9.0
+margin_right = 144.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+text = "MID2-X0251"
+
+[node name="run" type="Label" parent="ColorRect/Panes/SamplesPane/row1option1"]
+margin_left = 148.0
+margin_top = 9.0
+margin_right = 180.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 32, 0 )
+text = "1"
+
+[node name="processing" type="Label" parent="ColorRect/Panes/SamplesPane/row1option1"]
+margin_left = 184.0
+margin_top = 9.0
+margin_right = 274.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "XIA2/XDS"
+
+[node name="refinement" type="Label" parent="ColorRect/Panes/SamplesPane/row1option1"]
+margin_left = 278.0
+margin_top = 9.0
+margin_right = 368.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "DIMPLE"
+
+[node name="resolution" type="Label" parent="ColorRect/Panes/SamplesPane/row1option1"]
+margin_left = 372.0
+margin_top = 9.0
+margin_right = 462.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "1.70"
+
+[node name="picture" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row1option1"]
+margin_left = 466.0
+margin_right = 526.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 60, 0 )
+
+[node name="picture" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row1option1/picture"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="dozer" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row1option1"]
+margin_left = 530.0
+margin_right = 562.0
+margin_bottom = 32.0
+
+[node name="dozer" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row1option1/dozer"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="row1option2" type="HBoxContainer" parent="ColorRect/Panes/SamplesPane"]
+visible = false
+margin_top = 62.0
+margin_right = 1046.0
+margin_bottom = 94.0
+
+[node name="selected" type="CheckBox" parent="ColorRect/Panes/SamplesPane/row1option2"]
+margin_right = 40.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 40, 0 )
+group = SubResource( 2 )
+
+[node name="crystal" type="Label" parent="ColorRect/Panes/SamplesPane/row1option2"]
+margin_left = 44.0
+margin_top = 9.0
+margin_right = 144.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+text = "MID2-X0251"
+
+[node name="run" type="Label" parent="ColorRect/Panes/SamplesPane/row1option2"]
+margin_left = 148.0
+margin_top = 9.0
+margin_right = 180.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 32, 0 )
+text = "1"
+
+[node name="processing" type="Label" parent="ColorRect/Panes/SamplesPane/row1option2"]
+margin_left = 184.0
+margin_top = 9.0
+margin_right = 274.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "XIA2/DIALS"
+
+[node name="refinement" type="Label" parent="ColorRect/Panes/SamplesPane/row1option2"]
+margin_left = 278.0
+margin_top = 9.0
+margin_right = 368.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+
+[node name="resolution" type="Label" parent="ColorRect/Panes/SamplesPane/row1option2"]
+margin_left = 372.0
+margin_top = 9.0
+margin_right = 462.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "1.70"
+
+[node name="picture" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row1option2"]
+margin_left = 466.0
+margin_right = 526.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 60, 0 )
+
+[node name="picture" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row1option2/picture"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="dozer" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row1option2"]
+margin_left = 530.0
+margin_right = 562.0
+margin_bottom = 32.0
+
+[node name="dozer" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row1option2/dozer"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="row2" type="HBoxContainer" parent="ColorRect/Panes/SamplesPane"]
+margin_top = 62.0
+margin_right = 1046.0
+margin_bottom = 94.0
+
+[node name="expand" type="Button" parent="ColorRect/Panes/SamplesPane/row2"]
+margin_right = 20.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 20, 0 )
+text = "+"
+script = ExtResource( 6 )
+
+[node name="crystal" type="Label" parent="ColorRect/Panes/SamplesPane/row2"]
+margin_left = 24.0
+margin_top = 9.0
+margin_right = 124.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+text = "MID2-X0252"
+
+[node name="run" type="Label" parent="ColorRect/Panes/SamplesPane/row2"]
+margin_left = 128.0
+margin_top = 9.0
+margin_right = 160.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 32, 0 )
+text = "2"
+
+[node name="processing" type="Label" parent="ColorRect/Panes/SamplesPane/row2"]
+margin_left = 164.0
+margin_top = 9.0
+margin_right = 254.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "XIA2/XDS"
+
+[node name="refinement" type="Label" parent="ColorRect/Panes/SamplesPane/row2"]
+margin_left = 258.0
+margin_top = 9.0
+margin_right = 348.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "DIMPLE"
+
+[node name="resolution" type="Label" parent="ColorRect/Panes/SamplesPane/row2"]
+margin_left = 352.0
+margin_top = 9.0
+margin_right = 442.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "1.70"
+
+[node name="picture" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row2"]
+margin_left = 446.0
+margin_right = 506.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 60, 0 )
+
+[node name="picture" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row2/picture"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="dozer" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row2"]
+margin_left = 510.0
+margin_right = 542.0
+margin_bottom = 32.0
+
+[node name="dozer" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row2/dozer"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="row2option1" type="HBoxContainer" parent="ColorRect/Panes/SamplesPane"]
+visible = false
+margin_top = 98.0
+margin_right = 1046.0
+margin_bottom = 130.0
+
+[node name="selected" type="CheckBox" parent="ColorRect/Panes/SamplesPane/row2option1"]
+margin_right = 40.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 40, 0 )
+group = SubResource( 3 )
+
+[node name="crystal" type="Label" parent="ColorRect/Panes/SamplesPane/row2option1"]
+margin_left = 44.0
+margin_top = 9.0
+margin_right = 144.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+text = "MID2-X0252"
+
+[node name="run" type="Label" parent="ColorRect/Panes/SamplesPane/row2option1"]
+margin_left = 148.0
+margin_top = 9.0
+margin_right = 180.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 32, 0 )
+text = "1"
+
+[node name="processing" type="Label" parent="ColorRect/Panes/SamplesPane/row2option1"]
+margin_left = 184.0
+margin_top = 9.0
+margin_right = 274.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+
+[node name="refinement" type="Label" parent="ColorRect/Panes/SamplesPane/row2option1"]
+margin_left = 278.0
+margin_top = 9.0
+margin_right = 368.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+
+[node name="resolution" type="Label" parent="ColorRect/Panes/SamplesPane/row2option1"]
+margin_left = 372.0
+margin_top = 9.0
+margin_right = 462.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "1.70"
+
+[node name="picture" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row2option1"]
+margin_left = 466.0
+margin_right = 526.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 60, 0 )
+
+[node name="picture" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row2option1/picture"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="dozer" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row2option1"]
+margin_left = 530.0
+margin_right = 562.0
+margin_bottom = 32.0
+
+[node name="dozer" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row2option1/dozer"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="row2option2" type="HBoxContainer" parent="ColorRect/Panes/SamplesPane"]
+visible = false
+margin_top = 98.0
+margin_right = 1046.0
+margin_bottom = 130.0
+
+[node name="selected" type="CheckBox" parent="ColorRect/Panes/SamplesPane/row2option2"]
+margin_right = 40.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 40, 0 )
+pressed = true
+group = SubResource( 3 )
+
+[node name="crystal" type="Label" parent="ColorRect/Panes/SamplesPane/row2option2"]
+margin_left = 44.0
+margin_top = 9.0
+margin_right = 144.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+text = "MID2-X0252"
+
+[node name="run" type="Label" parent="ColorRect/Panes/SamplesPane/row2option2"]
+margin_left = 148.0
+margin_top = 9.0
+margin_right = 180.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 32, 0 )
+text = "2"
+
+[node name="processing" type="Label" parent="ColorRect/Panes/SamplesPane/row2option2"]
+margin_left = 184.0
+margin_top = 9.0
+margin_right = 274.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "XIA2/XDS"
+
+[node name="refinement" type="Label" parent="ColorRect/Panes/SamplesPane/row2option2"]
+margin_left = 278.0
+margin_top = 9.0
+margin_right = 368.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "DIMPLE"
+
+[node name="resolution" type="Label" parent="ColorRect/Panes/SamplesPane/row2option2"]
+margin_left = 372.0
+margin_top = 9.0
+margin_right = 462.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+text = "1.70"
+
+[node name="picture" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row2option2"]
+margin_left = 466.0
+margin_right = 526.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 60, 0 )
+
+[node name="picture" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row2option2/picture"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="dozer" type="MarginContainer" parent="ColorRect/Panes/SamplesPane/row2option2"]
+margin_left = 530.0
+margin_right = 562.0
+margin_bottom = 32.0
+
+[node name="dozer" type="TextureRect" parent="ColorRect/Panes/SamplesPane/row2option2/dozer"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="DataAnalysisPane" type="CenterContainer" parent="ColorRect/Panes"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HBoxContainer/SamplesPaneX"]
-margin_left = 411.0
-margin_top = 280.0
-margin_right = 511.0
-margin_bottom = 320.0
-rect_min_size = Vector2( 100, 40 )
-bbcode_enabled = true
-bbcode_text = "[center] [color=#8ff]Samples[/color] is selected.[/center]"
-text = " Samples is selected."
-scroll_active = false
-
-[node name="DataAnalysisPane" type="CenterContainer" parent="ColorRect/HBoxContainer"]
-visible = false
-margin_left = 102.0
-margin_right = 1024.0
-margin_bottom = 600.0
-size_flags_horizontal = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HBoxContainer/DataAnalysisPane"]
-margin_left = 411.0
-margin_top = 280.0
-margin_right = 511.0
-margin_bottom = 320.0
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/DataAnalysisPane"]
+margin_left = 473.0
+margin_top = 418.0
+margin_right = 573.0
+margin_bottom = 458.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
 bbcode_text = "[center] [color=#8ff]Data Analysis[/color] is selected.[/center]"
 text = " Data Analysis is selected."
 scroll_active = false
 
-[node name="PanDDAPane" type="CenterContainer" parent="ColorRect/HBoxContainer"]
+[node name="PanDDAPane" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
-margin_left = 102.0
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HBoxContainer/PanDDAPane"]
-margin_left = 411.0
-margin_top = 280.0
-margin_right = 511.0
-margin_bottom = 320.0
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/PanDDAPane"]
+margin_left = 473.0
+margin_top = 418.0
+margin_right = 573.0
+margin_bottom = 458.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
 bbcode_text = "[center] [color=#8ff]PanDDA[/color] is selected.[/center]"
 text = " PanDDA is selected."
 scroll_active = false
 
-[node name="ResultsPane" type="CenterContainer" parent="ColorRect/HBoxContainer"]
+[node name="ResultsPane" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
-margin_left = 102.0
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HBoxContainer/ResultsPane"]
-margin_left = 411.0
-margin_top = 280.0
-margin_right = 511.0
-margin_bottom = 320.0
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ResultsPane"]
+margin_left = 473.0
+margin_top = 418.0
+margin_right = 573.0
+margin_bottom = 458.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
 bbcode_text = "[center] [color=#8ff]Results[/color] is selected.[/center]"
 text = " Results is selected."
 scroll_active = false
 
-[node name="ProjectPane" type="CenterContainer" parent="ColorRect/HBoxContainer"]
+[node name="ProjectPane" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
-margin_left = 102.0
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HBoxContainer/ProjectPane"]
-margin_left = 411.0
-margin_top = 280.0
-margin_right = 511.0
-margin_bottom = 320.0
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ProjectPane"]
+margin_left = 473.0
+margin_top = 418.0
+margin_right = 573.0
+margin_bottom = 458.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
 bbcode_text = "[center] [color=#8ff]Project[/color] is selected.[/center]"
 text = " Project is selected."
 scroll_active = false
 
-[node name="ProjectPane2" type="CenterContainer" parent="ColorRect/HBoxContainer/ProjectPane"]
+[node name="ProjectPane2" type="CenterContainer" parent="ColorRect/Panes/ProjectPane"]
 visible = false
-margin_left = 411.0
-margin_top = 280.0
-margin_right = 511.0
-margin_bottom = 320.0
+margin_left = 473.0
+margin_top = 418.0
+margin_right = 573.0
+margin_bottom = 458.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HBoxContainer/ProjectPane/ProjectPane2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ProjectPane/ProjectPane2"]
 margin_right = 100.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
@@ -322,249 +878,46 @@ bbcode_text = "[center] [color=#8ff]Project[/color] is selected.[/center]"
 text = " Project is selected."
 scroll_active = false
 
-[node name="LibrariesPane" type="CenterContainer" parent="ColorRect/HBoxContainer"]
+[node name="LibrariesPane" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
-margin_left = 102.0
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HBoxContainer/LibrariesPane"]
-margin_left = 411.0
-margin_top = 280.0
-margin_right = 511.0
-margin_bottom = 320.0
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/LibrariesPane"]
+margin_left = 473.0
+margin_top = 418.0
+margin_right = 573.0
+margin_bottom = 458.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
 bbcode_text = "[center] [color=#8ff]Libraries[/color] is selected.[/center]"
 text = " Libraries is selected."
 scroll_active = false
 
-[node name="JobStatusPane" type="CenterContainer" parent="ColorRect/HBoxContainer"]
+[node name="JobStatusPane" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
-margin_left = 102.0
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HBoxContainer/JobStatusPane"]
-margin_left = 411.0
-margin_top = 280.0
-margin_right = 511.0
-margin_bottom = 320.0
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/JobStatusPane"]
+margin_left = 473.0
+margin_top = 418.0
+margin_right = 573.0
+margin_bottom = 458.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
 bbcode_text = "[center] [color=#8ff]Job Status[/color] is selected.[/center]"
 text = " Job Status is selected."
 scroll_active = false
 
-[node name="SamplesPane" type="GridContainer" parent="ColorRect/HBoxContainer"]
-margin_left = 102.0
-margin_right = 1024.0
-margin_bottom = 600.0
-size_flags_horizontal = 3
-columns = 8
-
-[node name="col0" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_right = 79.0
-margin_bottom = 14.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "crystal"
-valign = 1
-
-[node name="col1" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 83.0
-margin_right = 104.0
-margin_bottom = 14.0
-text = "run	"
-valign = 1
-
-[node name="col2" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 108.0
-margin_right = 177.0
-margin_bottom = 14.0
-text = "processing"
-valign = 1
-
-[node name="col3" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 181.0
-margin_right = 252.0
-margin_bottom = 14.0
-text = "	refinement"
-valign = 1
-
-[node name="col4" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 256.0
-margin_right = 321.0
-margin_bottom = 14.0
-text = "resolution"
-valign = 1
-
-[node name="col5" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 325.0
-margin_right = 370.0
-margin_bottom = 14.0
-text = "picture"
-valign = 1
-
-[node name="col6" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 374.0
-margin_right = 410.0
-margin_bottom = 14.0
-text = "dozer"
-valign = 1
-
-[node name="col7" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 414.0
-margin_right = 432.0
-margin_bottom = 14.0
-text = "???"
-valign = 1
-
-[node name="cell-0-0" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_top = 27.0
-margin_right = 79.0
-margin_bottom = 41.0
-text = "MID2-x0251"
-valign = 1
-
-[node name="cell-0-1" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 83.0
-margin_top = 27.0
-margin_right = 104.0
-margin_bottom = 41.0
-text = "1"
-align = 1
-valign = 1
-
-[node name="cell-0-2" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 108.0
-margin_top = 27.0
-margin_right = 177.0
-margin_bottom = 41.0
-text = " XIA2/XDS"
-valign = 1
-
-[node name="cell-0-3" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 181.0
-margin_top = 27.0
-margin_right = 252.0
-margin_bottom = 41.0
-text = "	DIMPLE"
-valign = 1
-
-[node name="cell-0-4" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 256.0
-margin_top = 27.0
-margin_right = 321.0
-margin_bottom = 41.0
-text = "1.70"
-valign = 1
-
-[node name="cell-0-5" type="TextureRect" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 325.0
-margin_top = 18.0
-margin_right = 357.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 32, 32 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource( 3 )
-expand = true
-
-[node name="cell-0-6" type="TextureRect" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 374.0
-margin_top = 18.0
-margin_right = 406.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 32, 32 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource( 4 )
-expand = true
-
-[node name="cell-0-7" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 414.0
-margin_top = 27.0
-margin_right = 432.0
-margin_bottom = 41.0
-text = "???"
-valign = 1
-
-[node name="cell-1-0" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_top = 63.0
-margin_right = 79.0
-margin_bottom = 77.0
-text = "MID2-x0252"
-valign = 1
-
-[node name="cell-1-1" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 83.0
-margin_top = 63.0
-margin_right = 104.0
-margin_bottom = 77.0
-text = "2"
-align = 1
-valign = 1
-
-[node name="cell-1-2" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 108.0
-margin_top = 63.0
-margin_right = 177.0
-margin_bottom = 77.0
-text = " XIA2/XDS"
-valign = 1
-
-[node name="cell-1-3" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 181.0
-margin_top = 63.0
-margin_right = 252.0
-margin_bottom = 77.0
-text = "	DIMPLE"
-valign = 1
-
-[node name="cell-1-4" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 256.0
-margin_top = 63.0
-margin_right = 321.0
-margin_bottom = 77.0
-text = "1.70"
-valign = 1
-
-[node name="cell-1-5" type="TextureRect" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 325.0
-margin_top = 54.0
-margin_right = 357.0
-margin_bottom = 86.0
-rect_min_size = Vector2( 32, 32 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource( 3 )
-expand = true
-
-[node name="cell-1-6" type="TextureRect" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 374.0
-margin_top = 54.0
-margin_right = 406.0
-margin_bottom = 86.0
-rect_min_size = Vector2( 32, 32 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource( 4 )
-expand = true
-
-[node name="cell-1-7" type="Label" parent="ColorRect/HBoxContainer/SamplesPane"]
-margin_left = 414.0
-margin_top = 63.0
-margin_right = 432.0
-margin_bottom = 77.0
-text = "???"
-valign = 1
-
-[connection signal="pressed" from="ColorRect/HBoxContainer/Menus/Samples" to="." method="select_samples"]
-[connection signal="pressed" from="ColorRect/HBoxContainer/Menus/DataAnalysis" to="." method="select_data_analysis"]
-[connection signal="pressed" from="ColorRect/HBoxContainer/Menus/PanDDA" to="." method="select_pandda"]
-[connection signal="pressed" from="ColorRect/HBoxContainer/Menus/Results" to="." method="select_results"]
-[connection signal="pressed" from="ColorRect/HBoxContainer/Menus/Project" to="." method="select_project"]
-[connection signal="pressed" from="ColorRect/HBoxContainer/Menus/Libraries" to="." method="select_libraries"]
-[connection signal="pressed" from="ColorRect/HBoxContainer/Menus/JobsStatus" to="." method="select_job_status"]
+[connection signal="pressed" from="ColorRect/Menus/Menus/Samples" to="." method="select_samples"]
+[connection signal="pressed" from="ColorRect/Menus/Menus/DataAnalysis" to="." method="select_data_analysis"]
+[connection signal="pressed" from="ColorRect/Menus/Menus/PanDDA" to="." method="select_pandda"]
+[connection signal="pressed" from="ColorRect/Menus/Menus/Results" to="." method="select_results"]
+[connection signal="pressed" from="ColorRect/Menus/Menus/Project" to="." method="select_project"]
+[connection signal="pressed" from="ColorRect/Menus/Menus/Libraries" to="." method="select_libraries"]
+[connection signal="pressed" from="ColorRect/Menus/Menus/JobsStatus" to="." method="select_job_status"]
+[connection signal="pressed" from="ColorRect/Panes/SamplesPane/row1/expand" to="ColorRect/Panes/SamplesPane/row1/expand" method="_on_pressed"]
+[connection signal="pressed" from="ColorRect/Panes/SamplesPane/row2/expand" to="ColorRect/Panes/SamplesPane/row2/expand" method="_on_pressed"]
