@@ -8,10 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Model",
+"language": "GDScript",
+"path": "res://scripts/model.gd"
+} ]
+_global_script_class_icons={
+"Model": ""
+}
+
 [application]
 
 config/name="fragmax"
-run/main_scene="res://main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
 [display]

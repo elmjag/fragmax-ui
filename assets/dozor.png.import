@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dozor.png-33b29297be98f821e9da86a1b4fead8d.stex"
+path="res://.import/dozor.png-7a312d2fea0270aa1caa455789e866cc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dozor.png"
-dest_files=[ "res://.import/dozor.png-33b29297be98f821e9da86a1b4fead8d.stex" ]
+source_file="res://assets/dozor.png"
+dest_files=[ "res://.import/dozor.png-7a312d2fea0270aa1caa455789e866cc.stex" ]
 
 [params]
 
