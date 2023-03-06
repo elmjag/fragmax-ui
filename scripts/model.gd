@@ -4,12 +4,17 @@ class_name Model
 
 signal model_updated(state)
 
-enum Actions {TOGGLE_SAMPLE_EXPAND, SET_NEW_TODO}
+enum Actions {
+    SELECT_PANE,
+    TOGGLE_SAMPLE_EXPAND,
+    SWITCH_SAMPLE_OPTION,
+}
 
 const utils = preload("res://scripts/utils.gd")
 
 class UI:
     var expanded_samples = utils.Set.new()
+    var current_pane = "Samples"
 
 
 class RefineResult:
@@ -26,6 +31,9 @@ class RefineResult:
 
     func set_input(input):
         self.input = input
+
+    func _to_string():
+        return "|RefineResult " + self.tool_name + "|"
 
 
 class ProcResult:
@@ -54,6 +62,9 @@ class ProcResult:
 
         # no refine results
         return null
+
+    func _to_string():
+        return "|ProcResult " + self.tool_name + "|"
 
 
 class DataSet:
@@ -88,8 +99,13 @@ class DataSet:
 
         return null
 
+    func _to_string():
+        return "|DataSet " + self.crystal.id + "-" + str(self.run) + "|"
+
+
 
 class Crystal:
+    var type = "Crystal"
     var id: String
     var datasets = []
 
@@ -116,11 +132,18 @@ class Crystal:
 
         self.selected = self.get_default_selected()
 
+    func _to_string():
+        return "|Crystal " + self.id + "|"
+
 
 class State:
     var crystals = [
         Crystal.new("MtCM-x0001", [
-            DataSet.new(1, 1.8, [ProcResult.new("XDSAPP", false, [])]),
+            DataSet.new(1, 1.8,
+            [
+                ProcResult.new("XDSAPP", false, []),
+                ProcResult.new("EDNA_proc", false, []),
+            ]),
         ]),
         Crystal.new("MtCM-x0002", [
             DataSet.new(1, 1.8,
@@ -129,11 +152,24 @@ class State:
                 [
                     RefineResult.new("DIMPLE", true),
                 ]),
+                ProcResult.new("EDNA_proc", false, []),
             ]),
         ]),
         Crystal.new("MtCM-x0007", [
             DataSet.new(1, 1.8, []),
             DataSet.new(2, 1.8, []),
+        ]),
+        Crystal.new("MtCM-x0083", [
+            DataSet.new(1, 1.8,
+            [
+                ProcResult.new("XDSAPP", true, []),
+                ProcResult.new("EDNA_proc", false, []),
+            ]),
+            DataSet.new(2, 1.8,
+            [
+                ProcResult.new("XDSAPP", false, []),
+                ProcResult.new("EDNA_proc", false, []),
+            ]),
         ]),
     ]
     var ui = UI.new()
@@ -158,12 +194,14 @@ func _toggle_sample_expand(crystal_id):
         expanded_set.add(crystal_id)
 
 
-func do(action, args):
+func do(action, arg):
     match action:
+        Actions.SELECT_PANE:
+            state.ui.current_pane = arg
         Actions.TOGGLE_SAMPLE_EXPAND:
-            _toggle_sample_expand(args)
-        Actions.ADD_TODO_ITEM:
-            state.todos += [state.new_todo]
+            _toggle_sample_expand(arg)
+        Actions.SWITCH_SAMPLE_OPTION:
+            arg.crystal.selected = arg.option
 
     self.call_deferred("_emit_model_updated_signal")
 

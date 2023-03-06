@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/model.gd" type="Script" id=1]
-[ext_resource path="res://scripts/control.gd" type="Script" id=2]
 [ext_resource path="res://assets/Roboto-Black.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://3.svg" type="Texture" id=4]
+[ext_resource path="res://scripts/Menus.gd" type="Script" id=5]
+[ext_resource path="res://scripts/Panes.gd" type="Script" id=6]
 [ext_resource path="res://scripts/SamplesPane.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
@@ -15,7 +16,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
 margin_right = 1.0
-script = ExtResource( 2 )
 
 [node name="model" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -54,6 +54,7 @@ margin_bottom = 556.0
 [node name="Menus" type="VBoxContainer" parent="ColorRect/Menus"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 5 )
 
 [node name="Samples" type="Button" parent="ColorRect/Menus/Menus"]
 margin_right = 161.0
@@ -68,9 +69,9 @@ text = "Data Analysis"
 
 [node name="DataAnalysisSubmenu" type="HBoxContainer" parent="ColorRect/Menus/Menus"]
 visible = false
-margin_top = 116.0
-margin_right = 98.0
-margin_bottom = 208.0
+margin_top = 48.0
+margin_right = 161.0
+margin_bottom = 140.0
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu"]
 margin_right = 10.0
@@ -79,31 +80,31 @@ rect_min_size = Vector2( 10, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu"]
 margin_left = 14.0
-margin_right = 98.0
+margin_right = 161.0
 margin_bottom = 92.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
-margin_right = 84.0
+[node name="DataAnalysisProcess" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
+margin_right = 147.0
 margin_bottom = 20.0
 text = "Process"
 
-[node name="Button2" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="DataAnalysisRefine" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_top = 24.0
-margin_right = 84.0
+margin_right = 147.0
 margin_bottom = 44.0
 text = "Refine"
 
-[node name="Button3" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="DataAnalysisFitLigands" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_top = 48.0
-margin_right = 84.0
+margin_right = 147.0
 margin_bottom = 68.0
 text = "Fit Ligands"
 
-[node name="Button4" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="DataAnalysisPandda" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_top = 72.0
-margin_right = 84.0
+margin_right = 147.0
 margin_bottom = 92.0
 text = "PanDDA"
 
@@ -131,57 +132,28 @@ margin_bottom = 44.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="ColorRect/Menus/Menus/PanDDASubmenu/VBoxContainer"]
+[node name="PanddaAnalyse" type="Button" parent="ColorRect/Menus/Menus/PanDDASubmenu/VBoxContainer"]
 margin_right = 84.0
 margin_bottom = 20.0
 text = "Analyse"
 
-[node name="Button2" type="Button" parent="ColorRect/Menus/Menus/PanDDASubmenu/VBoxContainer"]
+[node name="PanddaInspect" type="Button" parent="ColorRect/Menus/Menus/PanDDASubmenu/VBoxContainer"]
 margin_top = 24.0
 margin_right = 84.0
 margin_bottom = 44.0
 text = "Inspect"
 
-[node name="Results" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="Project" type="Button" parent="ColorRect/Menus/Menus"]
 margin_top = 72.0
 margin_right = 161.0
 margin_bottom = 92.0
-text = "Results"
-
-[node name="ResultsSubmenu" type="HBoxContainer" parent="ColorRect/Menus/Menus"]
-visible = false
-margin_top = 164.0
-margin_right = 98.0
-margin_bottom = 184.0
-
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/ResultsSubmenu"]
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/ResultsSubmenu"]
-margin_left = 14.0
-margin_right = 98.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( -244, -85 )
-size_flags_horizontal = 3
-
-[node name="Button" type="Button" parent="ColorRect/Menus/Menus/ResultsSubmenu/VBoxContainer"]
-margin_right = 84.0
-margin_bottom = 20.0
-text = "Download"
-
-[node name="Project" type="Button" parent="ColorRect/Menus/Menus"]
-margin_top = 96.0
-margin_right = 161.0
-margin_bottom = 116.0
 text = "Project"
 
 [node name="ProjectSubmenu" type="HBoxContainer" parent="ColorRect/Menus/Menus"]
 visible = false
-margin_top = 188.0
-margin_right = 98.0
-margin_bottom = 280.0
+margin_top = 96.0
+margin_right = 161.0
+margin_bottom = 188.0
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/ProjectSubmenu"]
 margin_right = 10.0
@@ -190,77 +162,74 @@ rect_min_size = Vector2( 10, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/ProjectSubmenu"]
 margin_left = 14.0
-margin_right = 98.0
+margin_right = 161.0
 margin_bottom = 92.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
-margin_right = 84.0
-margin_bottom = 20.0
-text = "Samples"
-
-[node name="Button2" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
+[node name="ProjectPDBs" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
 margin_top = 24.0
-margin_right = 84.0
+margin_right = 147.0
 margin_bottom = 44.0
 text = "PDBs"
 
-[node name="Button3" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
+[node name="ProjectDetails" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
 margin_top = 48.0
-margin_right = 84.0
+margin_right = 147.0
 margin_bottom = 68.0
 text = "Details"
 
-[node name="Button4" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
+[node name="ProjectSettings" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
 margin_top = 72.0
-margin_right = 84.0
+margin_right = 147.0
 margin_bottom = 92.0
 text = "Settings"
 
 [node name="Libraries" type="Button" parent="ColorRect/Menus/Menus"]
-margin_top = 120.0
+margin_top = 96.0
 margin_right = 161.0
-margin_bottom = 140.0
+margin_bottom = 116.0
 text = "Libraries"
 
 [node name="JobsStatus" type="Button" parent="ColorRect/Menus/Menus"]
-margin_top = 144.0
+margin_top = 120.0
 margin_right = 161.0
-margin_bottom = 164.0
+margin_bottom = 140.0
 text = "Jobs Status"
 
 [node name="Logout" type="Button" parent="ColorRect/Menus/Menus"]
-margin_top = 168.0
+margin_top = 144.0
 margin_right = 161.0
-margin_bottom = 188.0
+margin_bottom = 164.0
 text = "Logout"
 
 [node name="Panes" type="Control" parent="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 211.0
-margin_top = 69.0
-margin_right = -23.0
+margin_left = 306.0
+margin_top = 152.0
+margin_right = -12.0
 margin_bottom = -15.0
+script = ExtResource( 6 )
 
-[node name="SamplesPane" type="VBoxContainer" parent="ColorRect/Panes"]
+[node name="Samples" type="VBoxContainer" parent="ColorRect/Panes"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 8 )
 
-[node name="Headers" type="HBoxContainer" parent="ColorRect/Panes/SamplesPane"]
-margin_right = 1046.0
+[node name="Headers" type="HBoxContainer" parent="ColorRect/Panes/Samples"]
+margin_right = 962.0
 margin_bottom = 22.0
 
-[node name="crystal" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+[node name="crystal" type="Label" parent="ColorRect/Panes/Samples/Headers"]
 margin_right = 100.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "crystal"
 
-[node name="run" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+[node name="run" type="Label" parent="ColorRect/Panes/Samples/Headers"]
 margin_left = 104.0
 margin_right = 136.0
 margin_bottom = 22.0
@@ -268,7 +237,7 @@ rect_min_size = Vector2( 32, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "run"
 
-[node name="processing" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+[node name="processing" type="Label" parent="ColorRect/Panes/Samples/Headers"]
 margin_left = 140.0
 margin_right = 230.0
 margin_bottom = 22.0
@@ -276,7 +245,7 @@ rect_min_size = Vector2( 90, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "processing"
 
-[node name="refinement" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+[node name="refinement" type="Label" parent="ColorRect/Panes/Samples/Headers"]
 margin_left = 234.0
 margin_right = 325.0
 margin_bottom = 22.0
@@ -284,7 +253,7 @@ rect_min_size = Vector2( 90, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "refinement"
 
-[node name="resolution" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+[node name="resolution" type="Label" parent="ColorRect/Panes/Samples/Headers"]
 margin_left = 329.0
 margin_right = 419.0
 margin_bottom = 22.0
@@ -292,7 +261,7 @@ rect_min_size = Vector2( 90, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "resolution"
 
-[node name="picture" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+[node name="picture" type="Label" parent="ColorRect/Panes/Samples/Headers"]
 margin_left = 423.0
 margin_right = 483.0
 margin_bottom = 22.0
@@ -300,136 +269,190 @@ rect_min_size = Vector2( 60, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "picture"
 
-[node name="dozer" type="Label" parent="ColorRect/Panes/SamplesPane/Headers"]
+[node name="dozer" type="Label" parent="ColorRect/Panes/Samples/Headers"]
 margin_left = 487.0
 margin_right = 533.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 1 )
 text = "dozer"
 
-[node name="DataAnalysisPane" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="DataAnalysisProcess" type="VBoxContainer" parent="ColorRect/Panes"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisProcess"]
+margin_right = 962.0
+margin_bottom = 31.0
+text = "PROCESS
+"
+
+[node name="DataAnalysisRefine" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/DataAnalysisPane"]
-margin_left = 473.0
-margin_top = 418.0
-margin_right = 573.0
-margin_bottom = 458.0
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_left = 431.0
+margin_top = 376.0
+margin_right = 531.0
+margin_bottom = 416.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
-bbcode_text = "[center] [color=#8ff]Data Analysis[/color] is selected.[/center]"
-text = " Data Analysis is selected."
+bbcode_text = "[center] [color=#8ff]Data Analysis Refine[/color] is selected.[/center]"
+text = " Data Analysis Refine is selected."
 scroll_active = false
 
-[node name="PanDDAPane" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="DataAnalysisFitLigands" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/PanDDAPane"]
-margin_left = 473.0
-margin_top = 418.0
-margin_right = 573.0
-margin_bottom = 458.0
-rect_min_size = Vector2( 100, 40 )
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/DataAnalysisFitLigands"]
+margin_left = 421.0
+margin_top = 366.0
+margin_right = 541.0
+margin_bottom = 426.0
+rect_min_size = Vector2( 120, 60 )
 bbcode_enabled = true
-bbcode_text = "[center] [color=#8ff]PanDDA[/color] is selected.[/center]"
-text = " PanDDA is selected."
+bbcode_text = "[center] [color=#8ff]Data Analysis Ligand Fit[/color] is selected.[/center]"
+text = " Data Analysis Ligand Fit is selected."
 scroll_active = false
 
-[node name="ResultsPane" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="DataAnalysisPandda" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ResultsPane"]
-margin_left = 473.0
-margin_top = 418.0
-margin_right = 573.0
-margin_bottom = 458.0
-rect_min_size = Vector2( 100, 40 )
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/DataAnalysisPandda"]
+margin_left = 421.0
+margin_top = 366.0
+margin_right = 541.0
+margin_bottom = 426.0
+rect_min_size = Vector2( 120, 60 )
 bbcode_enabled = true
-bbcode_text = "[center] [color=#8ff]Results[/color] is selected.[/center]"
-text = " Results is selected."
+bbcode_text = "[center] [color=#8ff]Data Analysis PanDDA[/color] is selected.[/center]"
+text = " Data Analysis PanDDA is selected."
 scroll_active = false
 
-[node name="ProjectPane" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="PanddaAnalyse" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ProjectPane"]
-margin_left = 473.0
-margin_top = 418.0
-margin_right = 573.0
-margin_bottom = 458.0
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/PanddaAnalyse"]
+margin_left = 431.0
+margin_top = 376.0
+margin_right = 531.0
+margin_bottom = 416.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
-bbcode_text = "[center] [color=#8ff]Project[/color] is selected.[/center]"
-text = " Project is selected."
+bbcode_text = "[center] [color=#8ff]PanDDA Analyse[/color] is selected.[/center]"
+text = " PanDDA Analyse is selected."
 scroll_active = false
 
-[node name="ProjectPane2" type="CenterContainer" parent="ColorRect/Panes/ProjectPane"]
-visible = false
-margin_left = 473.0
-margin_top = 418.0
-margin_right = 573.0
-margin_bottom = 458.0
-size_flags_horizontal = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ProjectPane/ProjectPane2"]
-margin_right = 100.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 100, 40 )
-bbcode_enabled = true
-bbcode_text = "[center] [color=#8ff]Project[/color] is selected.[/center]"
-text = " Project is selected."
-scroll_active = false
-
-[node name="LibrariesPane" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="PanddaInspect" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/LibrariesPane"]
-margin_left = 473.0
-margin_top = 418.0
-margin_right = 573.0
-margin_bottom = 458.0
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/PanddaInspect"]
+margin_left = 431.0
+margin_top = 376.0
+margin_right = 531.0
+margin_bottom = 416.0
+rect_min_size = Vector2( 100, 40 )
+bbcode_enabled = true
+bbcode_text = "[center] [color=#8ff]PanDDA Inspect[/color] is selected.[/center]"
+text = " PanDDA Inspect is selected."
+scroll_active = false
+
+[node name="ProjectPDBs" type="CenterContainer" parent="ColorRect/Panes"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ProjectPDBs"]
+margin_left = 431.0
+margin_top = 376.0
+margin_right = 531.0
+margin_bottom = 416.0
+rect_min_size = Vector2( 100, 40 )
+bbcode_enabled = true
+bbcode_text = "[center] [color=#8ff]Project PDBs[/color] is selected.[/center]"
+text = " Project PDBs is selected."
+scroll_active = false
+
+[node name="ProjectDetails" type="CenterContainer" parent="ColorRect/Panes"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ProjectDetails"]
+margin_left = 431.0
+margin_top = 376.0
+margin_right = 531.0
+margin_bottom = 416.0
+rect_min_size = Vector2( 100, 40 )
+bbcode_enabled = true
+bbcode_text = "[center] [color=#8ff]Project Details[/color] is selected.[/center]"
+text = " Project Details is selected."
+scroll_active = false
+
+[node name="ProjectSettings" type="CenterContainer" parent="ColorRect/Panes"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ProjectSettings"]
+margin_left = 431.0
+margin_top = 376.0
+margin_right = 531.0
+margin_bottom = 416.0
+rect_min_size = Vector2( 100, 40 )
+bbcode_enabled = true
+bbcode_text = "[center] [color=#8ff]Project Settings[/color] is selected.[/center]"
+text = " Project Settings is selected."
+scroll_active = false
+
+[node name="Libraries" type="CenterContainer" parent="ColorRect/Panes"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/Libraries"]
+margin_left = 431.0
+margin_top = 376.0
+margin_right = 531.0
+margin_bottom = 416.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
 bbcode_text = "[center] [color=#8ff]Libraries[/color] is selected.[/center]"
 text = " Libraries is selected."
 scroll_active = false
 
-[node name="JobStatusPane" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="JobsStatus" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/JobStatusPane"]
-margin_left = 473.0
-margin_top = 418.0
-margin_right = 573.0
-margin_bottom = 458.0
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/JobsStatus"]
+margin_left = 431.0
+margin_top = 376.0
+margin_right = 531.0
+margin_bottom = 416.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
 bbcode_text = "[center] [color=#8ff]Job Status[/color] is selected.[/center]"
 text = " Job Status is selected."
 scroll_active = false
-
-[connection signal="pressed" from="ColorRect/Menus/Menus/Samples" to="." method="select_samples"]
-[connection signal="pressed" from="ColorRect/Menus/Menus/DataAnalysis" to="." method="select_data_analysis"]
-[connection signal="pressed" from="ColorRect/Menus/Menus/PanDDA" to="." method="select_pandda"]
-[connection signal="pressed" from="ColorRect/Menus/Menus/Results" to="." method="select_results"]
-[connection signal="pressed" from="ColorRect/Menus/Menus/Project" to="." method="select_project"]
-[connection signal="pressed" from="ColorRect/Menus/Menus/Libraries" to="." method="select_libraries"]
-[connection signal="pressed" from="ColorRect/Menus/Menus/JobsStatus" to="." method="select_job_status"]
