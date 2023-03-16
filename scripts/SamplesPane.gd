@@ -16,8 +16,8 @@ func _selected_desc(selected, desc={}):
     if not desc:
         desc = {
             "dataset": "",
-            "proc_res": "",
-            "refine_res": "",
+            "proc_res": {"name": "", "success": true},
+            "refine_res": {"name": "", "success": true},
         }
 
     match selected.type:
@@ -25,10 +25,10 @@ func _selected_desc(selected, desc={}):
             desc["dataset"] = selected
             return desc
         "ProcResult":
-            desc["proc_res"] = selected.tool_name
+            desc["proc_res"] = {"name": selected.tool_name, "success": selected.success}
             return _selected_desc(selected.input, desc)
         "RefineResult":
-            desc["refine_res"] = selected.tool_name
+            desc["refine_res"] = {"name": selected.tool_name, "success": selected.success}
             return _selected_desc(selected.input, desc)
 
 
@@ -53,8 +53,16 @@ func _get_row(crystal, expanded):
     children[0].connect("pressed", self, "_on_sample_expand_toggle", [crystal.id])
     children[1].text = crystal.id
     children[2].text = str(dataset.run)
-    children[3].text = desc["proc_res"]
-    children[4].text = desc["refine_res"]
+
+    children[3].text = desc["proc_res"]["name"]
+    if not desc["proc_res"]["success"]:
+        children[3].add_color_override("font_color", Color.crimson)
+
+    children[4].text = desc["refine_res"]["name"]
+    if not desc["refine_res"]["success"]:
+        children[4].add_color_override("font_color", Color.crimson)
+
+
     children[5].text = str(dataset.resolution)
 
     return row
@@ -72,8 +80,14 @@ func _get_option_row(crystal, button_group, option):
     children[0].connect("toggled", self, "_on_sample_option_toggleed", [crystal, option])
     children[1].text = crystal.id
     children[2].text = str(dataset.run)
-    children[3].text = desc["proc_res"]
-    children[4].text = desc["refine_res"]
+    children[3].text = desc["proc_res"]["name"]
+    if not desc["proc_res"]["success"]:
+        children[3].add_color_override("font_color", Color.crimson)
+
+    children[4].text = desc["refine_res"]["name"]
+    if not desc["refine_res"]["success"]:
+        children[4].add_color_override("font_color", Color.crimson)
+
     children[5].text = str(dataset.resolution)
 
     return row

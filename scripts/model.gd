@@ -70,13 +70,15 @@ class ProcResult:
 class DataSet:
     var type = "DataSet"
     var run: int
+    var session: String
     var resolution: float
     var results
 
     var crystal
 
-    func _init(run, resolution, results):
+    func _init(run, session, resolution, results):
         self.run = run
+        self.session = session
         self.resolution = resolution
         self.results = results
 
@@ -139,14 +141,28 @@ class Crystal:
 class State:
     var crystals = [
         Crystal.new("MtCM-x0001", [
-            DataSet.new(1, 1.8,
+            DataSet.new(1, "20220611", 1.8,
             [
                 ProcResult.new("XDSAPP", false, []),
                 ProcResult.new("EDNA_proc", false, []),
             ]),
         ]),
         Crystal.new("MtCM-x0002", [
-            DataSet.new(1, 1.8,
+            DataSet.new(1, "20220611", 1.8,
+            [
+                ProcResult.new("XDSAPP", true,
+                [
+                    RefineResult.new("DIMPLE", false),
+                ]),
+                ProcResult.new("EDNA_proc", false, []),
+            ]),
+        ]),
+        Crystal.new("MtCM-x0007", [
+            DataSet.new(1, "20220611", 1.8, []),
+            DataSet.new(2, "20220611", 1.8, []),
+        ]),
+        Crystal.new("MtCM-x0008", [
+            DataSet.new(1, "20220611", 1.8,
             [
                 ProcResult.new("XDSAPP", true,
                 [
@@ -155,17 +171,47 @@ class State:
                 ProcResult.new("EDNA_proc", false, []),
             ]),
         ]),
-        Crystal.new("MtCM-x0007", [
-            DataSet.new(1, 1.8, []),
-            DataSet.new(2, 1.8, []),
+        Crystal.new("MtCM-x0009", [
+            DataSet.new(1, "20220611", 1.8,
+            [
+                ProcResult.new("XDSAPP", true,
+                [
+                    RefineResult.new("DIMPLE", true),
+                ]),
+                ProcResult.new("EDNA_proc", false, []),
+            ]),
+        ]),
+        Crystal.new("MtCM-x0080", [
+            DataSet.new(1, "20230225", 1.8,
+            [
+                ProcResult.new("XDSAPP", true,
+                [
+                    RefineResult.new("DIMPLE", true),
+                ]),
+                ProcResult.new("EDNA_proc", false, []),
+            ]),
+        ]),
+        Crystal.new("MtCM-x0081", [
+            DataSet.new(1, "20230225", 1.8,
+            [
+                ProcResult.new("XDSAPP", false, []),
+                ProcResult.new("EDNA_proc", false, []),
+            ]),
+        ]),
+        Crystal.new("MtCM-x0082", [
+            DataSet.new(1, "20230225", 1.8,
+            [
+                ProcResult.new("XDSAPP", false, []),
+                ProcResult.new("EDNA_proc", false, []),
+            ]),
         ]),
         Crystal.new("MtCM-x0083", [
-            DataSet.new(1, 1.8,
+            DataSet.new(1, "20230225", 1.8,
             [
                 ProcResult.new("XDSAPP", true, []),
                 ProcResult.new("EDNA_proc", false, []),
             ]),
-            DataSet.new(2, 1.8,
+            DataSet.new(2, "20230225", 1.8,
             [
                 ProcResult.new("XDSAPP", false, []),
                 ProcResult.new("EDNA_proc", false, []),
