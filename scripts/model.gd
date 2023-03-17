@@ -8,13 +8,53 @@ enum Actions {
     SELECT_PANE,
     TOGGLE_SAMPLE_EXPAND,
     SWITCH_SAMPLE_OPTION,
+
+    # 'Samples' section on 'Processing' page
+    TOGGLE_SAMPLES_EXPANDED,
+
+    # sample selection/deselected on 'Processing' page
+    SET_PROC_SAMPLE_SELECTED,
+
+    # text filter on 'Processing' page
+    SET_PROC_TEXT_FILTER,
+
+    # sessions filter on 'Processing' page
+    SET_PROC_SESSION_FILTER,
+
+    # tools filter on 'Processing' page
+    SET_PROC_TOOL_FILTER,
+
+    # status filter on 'Processing' page
+    SET_PROC_STATUS_FILTER,
+
+    # select/unselect all visible samples on 'Processing' page
+    TOGGLE_PROC_VISIBLE_SAMPLES_SELECTED,
+
+    # set selected processing tool on 'Processing' page
+    SET_PROC_TOOL,
+
+    PROCESS_SELECTED_SAMPLES,
 }
 
 const utils = preload("res://scripts/utils.gd")
+const state_views = preload("res://scripts/state_views.gd")
+
+# Data Analysis -> Process pane state
+class ProcessUI:
+    var samples_expanded = true
+    var text_filter = ""
+    var selected_samples = utils.Set.new()
+    var visible_sessions = utils.Set.new()
+    var tools = ["EDNA_proc", "XIA2/DIALS", "XIA2/XDS", "XDSAPP"]
+    var selected_tool_idx = 0
+    var visible_tools = utils.Set.new()
+    var visible_status = utils.Set.new(["unprocessed", "processed", "failure"])
+
 
 class UI:
-    var expanded_samples = utils.Set.new()
     var current_pane = "Samples"
+    var expanded_samples = utils.Set.new()
+    var process = ProcessUI.new()
 
 
 class RefineResult:
@@ -139,6 +179,7 @@ class Crystal:
 
 
 class State:
+    var ui = UI.new()
     var crystals = [
         Crystal.new("MtCM-x0001", [
             DataSet.new(1, "20220611", 1.8,
@@ -218,7 +259,38 @@ class State:
             ]),
         ]),
     ]
-    var ui = UI.new()
+
+    func _init():
+        # start with all sessions visible
+        for session in self.get_sessions():
+            self.ui.process.visible_sessions.add(session)
+
+        # start with all tools visible
+        for tool_name in self.ui.process.tools:
+            self.ui.process.visible_tools.add(tool_name)
+
+
+    #
+    # short-cut views of the state
+    #
+
+    #
+    # get all sessions listed for crystal datasets
+    #
+    func get_sessions():
+        return state_views.get_sessions(self)
+
+    #
+    # get currently visible samples according to filters
+    # on 'Processing' page
+    #
+    func get_proc_visisble_samples():
+        return state_views.get_proc_visisble_samples(self)
+
+
+    func get_selected_process_tool():
+        return state_views.get_selected_process_tool(self)
+
 
 var state = State.new()
 
@@ -240,6 +312,37 @@ func _toggle_sample_expand(crystal_id):
         expanded_set.add(crystal_id)
 
 
+func _set_proc_sample_selected(crystal_id, selected):
+    state.ui.process.selected_samples.set_included(crystal_id, selected)
+
+
+func _toggle_proc_visible_samples_selected(selected: bool):
+    for desc in state.get_proc_visisble_samples():
+        state.ui.process.selected_samples.set_included(desc.crystal_id, selected)
+
+
+func _set_proc_session_filter(session, show: bool):
+    state.ui.process.visible_sessions.set_included(session, show)
+
+
+func _set_proc_tool_filter(tool_name, show: bool):
+    state.ui.process.visible_tools.set_included(tool_name, show)
+
+
+func _set_proc_status_filter(status, show: bool):
+    state.ui.process.visible_status.set_included(status, show)
+
+
+func _process_selected_samples():
+    var process = state.ui.process
+
+    var tool_name = state.get_selected_process_tool()
+    print("process with %s" % tool_name)
+
+    for sample in process.selected_samples.as_list():
+        print(sample)
+
+
 func do(action, arg):
     match action:
         Actions.SELECT_PANE:
@@ -248,6 +351,25 @@ func do(action, arg):
             _toggle_sample_expand(arg)
         Actions.SWITCH_SAMPLE_OPTION:
             arg.crystal.selected = arg.option
+        Actions.TOGGLE_SAMPLES_EXPANDED:
+            state.ui.process.samples_expanded = !state.ui.process.samples_expanded
+        Actions.SET_PROC_TEXT_FILTER:
+            state.ui.process.text_filter = arg
+        Actions.SET_PROC_SAMPLE_SELECTED:
+            _set_proc_sample_selected(arg[0], arg[1])
+        Actions.TOGGLE_PROC_VISIBLE_SAMPLES_SELECTED:
+            _toggle_proc_visible_samples_selected(arg)
+        Actions.SET_PROC_SESSION_FILTER:
+            _set_proc_session_filter(arg[0], arg[1])
+        Actions.SET_PROC_TOOL_FILTER:
+            _set_proc_tool_filter(arg[0], arg[1])
+        Actions.SET_PROC_STATUS_FILTER:
+            _set_proc_status_filter(arg[0], arg[1])
+        Actions.SET_PROC_TOOL:
+            state.ui.process.selected_tool_idx = arg
+        Actions.PROCESS_SELECTED_SAMPLES:
+            _process_selected_samples()
+
 
     self.call_deferred("_emit_model_updated_signal")
 

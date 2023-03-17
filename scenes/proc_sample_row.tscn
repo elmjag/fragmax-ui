@@ -1,0 +1,38 @@
+[gd_scene format=2]
+
+[node name="SamplesRow" type="HBoxContainer"]
+margin_top = 29.0
+margin_right = 962.0
+margin_bottom = 53.0
+
+[node name="CheckBox" type="CheckBox" parent="."]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="crystal" type="Label" parent="."]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 128.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="run" type="Label" parent="."]
+margin_left = 132.0
+margin_top = 5.0
+margin_right = 164.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 32, 0 )
+
+[node name="session" type="Label" parent="."]
+margin_left = 168.0
+margin_top = 5.0
+margin_right = 248.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 80, 0 )
+
+[node name="tool" type="Label" parent="."]
+margin_left = 252.0
+margin_top = 5.0
+margin_right = 342.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 90, 0 )

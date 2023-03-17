@@ -2,9 +2,11 @@ extends VBoxContainer
 
 
 const utils = preload("res://scripts/utils.gd")
-var row_scene = preload("res://scenes/sample_row.tscn")
-var row_option_scene = preload("res://scenes/sample_row_option.tscn")
+const row_scene = preload("res://scenes/sample_row.tscn")
+const row_option_scene = preload("res://scenes/sample_row_option.tscn")
+
 onready var model = get_node("/root/Control/model")
+
 var added_elemens = []
 
 
@@ -35,7 +37,8 @@ func _selected_desc(selected, desc={}):
 func _on_sample_expand_toggle(crystal_id):
     model.do(Model.Actions.TOGGLE_SAMPLE_EXPAND, crystal_id)
 
-func _on_sample_option_toggleed(pressed, crystal, option):
+
+func _on_sample_option_toggled(pressed, crystal, option):
     if not pressed:
         return
 
@@ -49,7 +52,7 @@ func _get_row(crystal, expanded):
     var row = row_scene.instance()
     var children = row.get_children()
 
-    children[0].text = "-" if expanded else "+"
+    children[0].text = utils.expand_toggle_text(expanded)
     children[0].connect("pressed", self, "_on_sample_expand_toggle", [crystal.id])
     children[1].text = crystal.id
     children[2].text = str(dataset.run)
@@ -61,7 +64,6 @@ func _get_row(crystal, expanded):
     children[4].text = desc["refine_res"]["name"]
     if not desc["refine_res"]["success"]:
         children[4].add_color_override("font_color", Color.crimson)
-
 
     children[5].text = str(dataset.resolution)
 
@@ -77,7 +79,7 @@ func _get_option_row(crystal, button_group, option):
 
     children[0].set_button_group(button_group)
     children[0].pressed = (crystal.selected == option)
-    children[0].connect("toggled", self, "_on_sample_option_toggleed", [crystal, option])
+    children[0].connect("toggled", self, "_on_sample_option_toggled", [crystal, option])
     children[1].text = crystal.id
     children[2].text = str(dataset.run)
     children[3].text = desc["proc_res"]["name"]
