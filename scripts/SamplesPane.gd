@@ -6,6 +6,12 @@ const row_scene = preload("res://scenes/sample_row.tscn")
 const row_option_scene = preload("res://scenes/sample_row_option.tscn")
 
 onready var model = get_node("/root/Control/model")
+onready var proc_space_group = get_node("Headers/spaceGroup")
+onready var proc_multiplicity = get_node("Headers/multiplicity")
+onready var resolution = get_node("Headers/resolution")
+onready var rwork = get_node("Headers/rwork")
+onready var picture = get_node("Headers/picture")
+onready var dozer_graph = get_node("Headers/dozer")
 
 var added_elemens = []
 
@@ -18,8 +24,8 @@ func _selected_desc(selected, desc={}):
     if not desc:
         desc = {
             "dataset": "",
-            "proc_res": {"name": "", "success": true},
-            "refine_res": {"name": "", "success": true},
+            "proc_res": null,
+            "refine_res": null,
         }
 
     match selected.type:
@@ -27,10 +33,20 @@ func _selected_desc(selected, desc={}):
             desc["dataset"] = selected
             return desc
         "ProcResult":
-            desc["proc_res"] = {"name": selected.tool_name, "success": selected.success}
+            desc["proc_res"] = {
+                "name": selected.tool_name,
+                "success": selected.success,
+                "space_group": selected.space_group,
+                "multiplicity": selected.multiplicity,
+            }
             return _selected_desc(selected.input, desc)
         "RefineResult":
-            desc["refine_res"] = {"name": selected.tool_name, "success": selected.success}
+            desc["refine_res"] = {
+                "name": selected.tool_name,
+                "success": selected.success,
+                "resolution": selected.resolution,
+                "rwork": selected.rwork,
+            }
             return _selected_desc(selected.input, desc)
 
 
@@ -45,8 +61,9 @@ func _on_sample_option_toggled(pressed, crystal, option):
     model.do(Model.Actions.SWITCH_SAMPLE_OPTION, {"crystal":crystal, "option":option})
 
 
-func _get_row(crystal, expanded):
+func _get_row(crystal, expanded, show):
     var desc = _selected_desc(crystal.selected)
+
     var dataset = desc["dataset"]
 
     var row = row_scene.instance()
@@ -57,15 +74,42 @@ func _get_row(crystal, expanded):
     children[1].text = crystal.id
     children[2].text = str(dataset.run)
 
-    children[3].text = desc["proc_res"]["name"]
-    if not desc["proc_res"]["success"]:
-        children[3].add_color_override("font_color", Color.crimson)
+    var proc_res = desc.proc_res
+    if proc_res != null:
+        # tool name
+        children[3].text = proc_res.name
+        if not proc_res.success:
+            children[3].add_color_override("font_color", Color.crimson)
+        children[5].text = proc_res.space_group
+        children[6].text = proc_res.multiplicity
 
-    children[4].text = desc["refine_res"]["name"]
-    if not desc["refine_res"]["success"]:
-        children[4].add_color_override("font_color", Color.crimson)
+    var refine_res = desc.refine_res
+    if refine_res != null:
+        children[4].text = refine_res.name
+        if refine_res.success:
+            children[7].text = str(refine_res.resolution)
+            children[8].text = refine_res.rwork
+        else:
+            children[4].add_color_override("font_color", Color.crimson)
 
-    children[5].text = str(dataset.resolution)
+
+    # process space group
+    children[5].visible = show.proc_space_group
+
+    # process multiplicity
+    children[6].visible = show.proc_multiplicity
+
+    # resolution
+    children[7].visible = show.ref_resolution
+
+    # r_work
+    children[8].visible = show.ref_rwork
+
+    # picture
+    children[9].visible = show.crystal_picture
+
+    # dozer
+    children[10].visible = show.dozer_graph
 
     return row
 
@@ -82,15 +126,18 @@ func _get_option_row(crystal, button_group, option):
     children[0].connect("toggled", self, "_on_sample_option_toggled", [crystal, option])
     children[1].text = crystal.id
     children[2].text = str(dataset.run)
-    children[3].text = desc["proc_res"]["name"]
-    if not desc["proc_res"]["success"]:
-        children[3].add_color_override("font_color", Color.crimson)
 
-    children[4].text = desc["refine_res"]["name"]
-    if not desc["refine_res"]["success"]:
-        children[4].add_color_override("font_color", Color.crimson)
+    if desc.proc_res != null:
+        children[3].text = desc.proc_res.name
+        if not desc.proc_res.success:
+            children[3].add_color_override("font_color", Color.crimson)
 
-    children[5].text = str(dataset.resolution)
+    if desc.refine_res != null:
+        children[4].text = desc.refine_res.name
+        if not desc.refine_res.success:
+            children[4].add_color_override("font_color", Color.crimson)
+
+#    children[5].text = str(dataset.resolution)
 
     return row
 
@@ -123,13 +170,26 @@ func _add_row(row):
     added_elemens.append(row)
 
 
+func _update_visible_col_headers(show):
+    proc_space_group.visible = show.proc_space_group
+    proc_multiplicity.visible = show.proc_multiplicity
+    resolution.visible = show.ref_resolution
+    rwork.visible = show.ref_rwork
+    picture.visible = show.crystal_picture
+    dozer_graph.visible = show.dozer_graph
+
+
 func _model_updated(state):
+    var show_cols = state.ui.settings.show
+
+    _update_visible_col_headers(show_cols)
+
     utils.remove_elements(added_elemens)
     added_elemens = []
 
     for crystal in state.crystals:
         var expanded = state.ui.expanded_samples.contains(crystal.id)
-        _add_row(_get_row(crystal, expanded))
+        _add_row(_get_row(crystal, expanded, show_cols))
 
         if expanded:
             var button_group = ButtonGroup.new()

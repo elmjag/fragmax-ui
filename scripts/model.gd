@@ -34,6 +34,9 @@ enum Actions {
     SET_PROC_TOOL,
 
     PROCESS_SELECTED_SAMPLES,
+
+    # project settings have changed
+    UPDATE_SETTINGS,
 }
 
 const utils = preload("res://scripts/utils.gd")
@@ -50,24 +53,43 @@ class ProcessUI:
     var visible_tools = utils.Set.new()
     var visible_status = utils.Set.new(["unprocessed", "processed", "failure"])
 
+# Settings pane state
+class SettingsUI:
+    var show = {
+        # general section
+        "crystal_picture" : true,
+        "dozer_graph" : true,
+        # processing section
+        "proc_space_group" : true,
+        "proc_multiplicity" : false,
+        # refinement section
+        "ref_resolution" : true,
+        "ref_rwork" : false,
+    }
+
 
 class UI:
     var current_pane = "Samples"
     var expanded_samples = utils.Set.new()
     var process = ProcessUI.new()
+    var settings = SettingsUI.new()
 
 
 class RefineResult:
     var type = "RefineResult"
     var tool_name: String
     var success: bool
+    var resolution: float
+    var rwork: String
 
     # input ProcResult used to generate this refine result
     var input
 
-    func _init(tool_name, success):
+    func _init(tool_name, success, resolution, rwork):
         self.tool_name = tool_name
         self.success = success
+        self.resolution = resolution
+        self.rwork = rwork
 
     func set_input(input):
         self.input = input
@@ -80,14 +102,19 @@ class ProcResult:
     var type = "ProcResult"
     var tool_name: String
     var success: bool
+    var space_group: String
+    var multiplicity: String
+    # refine results
     var results
 
     # input DataSet used to generate this proc result
     var input
 
-    func _init(tool_name, success, results):
+    func _init(tool_name, success, space_group, multiplicity, results):
         self.tool_name = tool_name
         self.success = success
+        self.space_group = space_group
+        self.multiplicity = multiplicity
         self.results = results
 
         for res in results:
@@ -111,15 +138,13 @@ class DataSet:
     var type = "DataSet"
     var run: int
     var session: String
-    var resolution: float
     var results
 
     var crystal
 
-    func _init(run, session, resolution, results):
+    func _init(run, session, results):
         self.run = run
         self.session = session
-        self.resolution = resolution
         self.results = results
 
         for res in results:
@@ -182,80 +207,80 @@ class State:
     var ui = UI.new()
     var crystals = [
         Crystal.new("MtCM-x0001", [
-            DataSet.new(1, "20220611", 1.8,
+            DataSet.new(1, "20220611",
             [
-                ProcResult.new("XDSAPP", false, []),
-                ProcResult.new("EDNA_proc", false, []),
+                ProcResult.new("XDSAPP", false, "", "", []),
+                ProcResult.new("EDNA_proc", false, "", "", []),
             ]),
         ]),
         Crystal.new("MtCM-x0002", [
-            DataSet.new(1, "20220611", 1.8,
+            DataSet.new(1, "20220611",
             [
-                ProcResult.new("XDSAPP", true,
+                ProcResult.new("XDSAPP", true, "P43212", "13.9",
                 [
-                    RefineResult.new("DIMPLE", false),
+                    RefineResult.new("DIMPLE", true, 2.15, "0.24"),
                 ]),
-                ProcResult.new("EDNA_proc", false, []),
+                ProcResult.new("EDNA_proc", false, "", "", []),
             ]),
         ]),
         Crystal.new("MtCM-x0007", [
-            DataSet.new(1, "20220611", 1.8, []),
-            DataSet.new(2, "20220611", 1.8, []),
+            DataSet.new(1, "20220611", []),
+            DataSet.new(2, "20220611", []),
         ]),
         Crystal.new("MtCM-x0008", [
-            DataSet.new(1, "20220611", 1.8,
+            DataSet.new(1, "20220611",
             [
-                ProcResult.new("XDSAPP", true,
+                ProcResult.new("XDSAPP", true, "P41212", "14.0",
                 [
-                    RefineResult.new("DIMPLE", true),
+                    RefineResult.new("DIMPLE", true, 1.83, "0.25"),
                 ]),
-                ProcResult.new("EDNA_proc", false, []),
+                ProcResult.new("EDNA_proc", false, "", "", []),
             ]),
         ]),
         Crystal.new("MtCM-x0009", [
-            DataSet.new(1, "20220611", 1.8,
+            DataSet.new(1, "20220611",
             [
-                ProcResult.new("XDSAPP", true,
+                ProcResult.new("XDSAPP", true, "P43212", "13.9",
                 [
-                    RefineResult.new("DIMPLE", true),
+                    RefineResult.new("DIMPLE", true, 2.19, "0.24"),
                 ]),
-                ProcResult.new("EDNA_proc", false, []),
+                ProcResult.new("EDNA_proc", false, "", "", []),
             ]),
         ]),
         Crystal.new("MtCM-x0080", [
-            DataSet.new(1, "20230225", 1.8,
+            DataSet.new(1, "20230225",
             [
-                ProcResult.new("XDSAPP", true,
+                ProcResult.new("XDSAPP", true, "", "26.7",
                 [
-                    RefineResult.new("DIMPLE", true),
+                    RefineResult.new("DIMPLE", true, 1.95, "0.23"),
                 ]),
-                ProcResult.new("EDNA_proc", false, []),
+                ProcResult.new("EDNA_proc", false, "P41212", "", []),
             ]),
         ]),
         Crystal.new("MtCM-x0081", [
-            DataSet.new(1, "20230225", 1.8,
+            DataSet.new(1, "20230225",
             [
-                ProcResult.new("XDSAPP", false, []),
-                ProcResult.new("EDNA_proc", false, []),
+                ProcResult.new("XDSAPP", false, "", "", []),
+                ProcResult.new("EDNA_proc", false, "", "", []),
             ]),
         ]),
         Crystal.new("MtCM-x0082", [
-            DataSet.new(1, "20230225", 1.8,
+            DataSet.new(1, "20230225",
             [
-                ProcResult.new("XDSAPP", false, []),
-                ProcResult.new("EDNA_proc", false, []),
+                ProcResult.new("XDSAPP", false, "", "", []),
+                ProcResult.new("EDNA_proc", false, "", "", []),
             ]),
         ]),
         Crystal.new("MtCM-x0083", [
-            DataSet.new(1, "20230225", 1.8,
+            DataSet.new(1, "20230225",
             [
-                ProcResult.new("XDSAPP", true, []),
-                ProcResult.new("EDNA_proc", false, []),
+                ProcResult.new("XDSAPP", true, "C2221", "6.1", []),
+                ProcResult.new("EDNA_proc", false, "", "", []),
             ]),
-            DataSet.new(2, "20230225", 1.8,
+            DataSet.new(2, "20230225",
             [
-                ProcResult.new("XDSAPP", false, []),
-                ProcResult.new("EDNA_proc", false, []),
+                ProcResult.new("XDSAPP", false, "", "", []),
+                ProcResult.new("EDNA_proc", false, "", "", []),
             ]),
         ]),
     ]
@@ -343,6 +368,10 @@ func _process_selected_samples():
         print(sample)
 
 
+func _update_setting(name, value):
+    state.ui.settings.show[name] = value
+
+
 func do(action, arg):
     match action:
         Actions.SELECT_PANE:
@@ -369,6 +398,8 @@ func do(action, arg):
             state.ui.process.selected_tool_idx = arg
         Actions.PROCESS_SELECTED_SAMPLES:
             _process_selected_samples()
+        Actions.UPDATE_SETTINGS:
+            _update_setting(arg[0], arg[1])
 
 
     self.call_deferred("_emit_model_updated_signal")

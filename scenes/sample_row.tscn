@@ -42,16 +42,37 @@ margin_right = 348.0
 margin_bottom = 23.0
 rect_min_size = Vector2( 90, 0 )
 
-[node name="resolution" type="Label" parent="."]
+[node name="spaceGroup" type="Label" parent="."]
 margin_left = 352.0
 margin_top = 9.0
-margin_right = 442.0
+margin_right = 452.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="multiplicity" type="Label" parent="."]
+margin_left = 456.0
+margin_top = 9.0
+margin_right = 551.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 95, 0 )
+
+[node name="resolution" type="Label" parent="."]
+margin_left = 555.0
+margin_top = 9.0
+margin_right = 645.0
 margin_bottom = 23.0
 rect_min_size = Vector2( 90, 0 )
 
+[node name="rwork" type="Label" parent="."]
+margin_left = 649.0
+margin_top = 9.0
+margin_right = 709.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 60, 0 )
+
 [node name="picture" type="MarginContainer" parent="."]
-margin_left = 446.0
-margin_right = 506.0
+margin_left = 713.0
+margin_right = 773.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 60, 0 )
 
@@ -65,8 +86,8 @@ texture = ExtResource( 2 )
 expand = true
 
 [node name="dozer" type="MarginContainer" parent="."]
-margin_left = 510.0
-margin_right = 542.0
+margin_left = 777.0
+margin_right = 809.0
 margin_bottom = 32.0
 
 [node name="dozer" type="TextureRect" parent="dozer"]

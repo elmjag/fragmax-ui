@@ -23,7 +23,7 @@ func _ready():
     _connect_menu(get_node("Project"), "ProjectPDBs")
     _connect_menu(find_node("ProjectPDBs"))
     _connect_menu(find_node("ProjectDetails"))
-    _connect_menu(find_node("ProjectSettings"))
+    _connect_menu(get_node("Settings"))
     _connect_menu(get_node("Libraries"))
     _connect_menu(get_node("JobsStatus"))
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/model.gd" type="Script" id=1]
 [ext_resource path="res://assets/search.svg" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scripts/Panes.gd" type="Script" id=6]
 [ext_resource path="res://scripts/DataAnalysisProcess.gd" type="Script" id=7]
 [ext_resource path="res://scripts/SamplesPane.gd" type="Script" id=8]
+[ext_resource path="res://scripts/SettingsPane.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -155,67 +156,65 @@ text = "Project"
 visible = false
 margin_top = 96.0
 margin_right = 161.0
-margin_bottom = 188.0
+margin_bottom = 164.0
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/ProjectSubmenu"]
 margin_right = 10.0
-margin_bottom = 92.0
+margin_bottom = 68.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/ProjectSubmenu"]
 margin_left = 14.0
 margin_right = 161.0
-margin_bottom = 92.0
+margin_bottom = 68.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
 [node name="ProjectPDBs" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
-margin_top = 24.0
 margin_right = 147.0
-margin_bottom = 44.0
+margin_bottom = 20.0
 text = "PDBs"
 
 [node name="ProjectDetails" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
-margin_top = 48.0
+margin_top = 24.0
 margin_right = 147.0
-margin_bottom = 68.0
+margin_bottom = 44.0
 text = "Details"
 
-[node name="ProjectSettings" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
-margin_top = 72.0
-margin_right = 147.0
-margin_bottom = 92.0
-text = "Settings"
-
-[node name="Libraries" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="Settings" type="Button" parent="ColorRect/Menus/Menus"]
 margin_top = 96.0
 margin_right = 161.0
 margin_bottom = 116.0
-text = "Libraries"
+text = "Settings"
 
-[node name="JobsStatus" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="Libraries" type="Button" parent="ColorRect/Menus/Menus"]
 margin_top = 120.0
 margin_right = 161.0
 margin_bottom = 140.0
-text = "Jobs Status"
+text = "Libraries"
 
-[node name="Logout" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="JobsStatus" type="Button" parent="ColorRect/Menus/Menus"]
 margin_top = 144.0
 margin_right = 161.0
 margin_bottom = 164.0
+text = "Jobs Status"
+
+[node name="Logout" type="Button" parent="ColorRect/Menus/Menus"]
+margin_top = 168.0
+margin_right = 161.0
+margin_bottom = 188.0
 text = "Logout"
 
 [node name="Panes" type="Control" parent="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 306.0
-margin_top = 152.0
-margin_right = -12.0
-margin_bottom = -15.0
+margin_left = 246.0
+margin_top = 148.0
+margin_right = -72.0
+margin_bottom = -19.0
 script = ExtResource( 6 )
 
 [node name="Samples" type="VBoxContainer" parent="ColorRect/Panes"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 8 )
@@ -255,25 +254,49 @@ rect_min_size = Vector2( 90, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "refinement"
 
-[node name="resolution" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+[node name="spaceGroup" type="Label" parent="ColorRect/Panes/Samples/Headers"]
 margin_left = 329.0
-margin_right = 419.0
+margin_right = 434.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 105, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "space group"
+
+[node name="multiplicity" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+margin_left = 438.0
+margin_right = 533.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 95, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "multiplicity"
+
+[node name="resolution" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+margin_left = 537.0
+margin_right = 627.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 90, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "resolution"
 
+[node name="rwork" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+margin_left = 631.0
+margin_right = 691.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 60, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "r_work"
+
 [node name="picture" type="Label" parent="ColorRect/Panes/Samples/Headers"]
-margin_left = 423.0
-margin_right = 483.0
+margin_left = 695.0
+margin_right = 755.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 60, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "picture"
 
 [node name="dozer" type="Label" parent="ColorRect/Panes/Samples/Headers"]
-margin_left = 487.0
-margin_right = 533.0
+margin_left = 759.0
+margin_right = 805.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 1 )
 text = "dozer"
@@ -623,22 +646,271 @@ bbcode_text = "[center] [color=#8ff]Project Details[/color] is selected.[/center
 text = " Project Details is selected."
 scroll_active = false
 
-[node name="ProjectSettings" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="Settings" type="VBoxContainer" parent="ColorRect/Panes"]
 visible = false
 anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
+margin_bottom = 14.0
+alignment = 1
+script = ExtResource( 9 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ProjectSettings"]
-margin_left = 431.0
-margin_top = 376.0
-margin_right = 531.0
-margin_bottom = 416.0
-rect_min_size = Vector2( 100, 40 )
-bbcode_enabled = true
-bbcode_text = "[center] [color=#8ff]Project Settings[/color] is selected.[/center]"
-text = " Project Settings is selected."
-scroll_active = false
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/Panes/Settings"]
+margin_right = 962.0
+margin_bottom = 20.0
+
+[node name="Button" type="Button" parent="ColorRect/Panes/Settings/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "  "
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/HBoxContainer"]
+margin_left = 24.0
+margin_top = 3.0
+margin_right = 111.0
+margin_bottom = 17.0
+text = "Samples view"
+
+[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/Settings"]
+margin_top = 24.0
+margin_right = 962.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="SamplesViewOpts" type="HBoxContainer" parent="ColorRect/Panes/Settings"]
+margin_top = 48.0
+margin_right = 962.0
+margin_bottom = 496.0
+
+[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/Settings/SamplesViewOpts"]
+margin_right = 20.0
+margin_bottom = 448.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Options" type="VBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts"]
+margin_left = 24.0
+margin_right = 181.0
+margin_bottom = 448.0
+
+[node name="Label2" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_right = 157.0
+margin_bottom = 14.0
+text = "Show following columns:"
+
+[node name="SpaceBuffer2" type="Control" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 18.0
+margin_right = 157.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="general" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 42.0
+margin_right = 157.0
+margin_bottom = 56.0
+text = "general"
+
+[node name="CrystalPicture" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 60.0
+margin_right = 157.0
+margin_bottom = 84.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/CrystalPicture"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/CrystalPicture"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 126.0
+margin_bottom = 19.0
+text = "crystal pictures"
+
+[node name="DozerGraph" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 88.0
+margin_right = 157.0
+margin_bottom = 112.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/DozerGraph"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/DozerGraph"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 103.0
+margin_bottom = 19.0
+text = "dozer graph"
+
+[node name="SpaceBuffer3" type="Control" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 116.0
+margin_right = 157.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="processing" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 140.0
+margin_right = 157.0
+margin_bottom = 154.0
+text = "processing"
+
+[node name="ProcSpaceGroup" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 158.0
+margin_right = 157.0
+margin_bottom = 182.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/ProcSpaceGroup"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/ProcSpaceGroup"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 105.0
+margin_bottom = 19.0
+text = "space group"
+
+[node name="ProcMultiplicity" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 186.0
+margin_right = 157.0
+margin_bottom = 210.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/ProcMultiplicity"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/ProcMultiplicity"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 101.0
+margin_bottom = 19.0
+text = "multiplicity"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 214.0
+margin_right = 157.0
+margin_bottom = 238.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer6"]
+margin_right = 24.0
+margin_bottom = 24.0
+disabled = true
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer6"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 61.0
+margin_bottom = 19.0
+text = "I/sigI"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 242.0
+margin_right = 157.0
+margin_bottom = 266.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer7"]
+margin_right = 24.0
+margin_bottom = 24.0
+disabled = true
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer7"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 77.0
+margin_bottom = 19.0
+text = "R_meas"
+
+[node name="SpaceBuffer4" type="Control" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 270.0
+margin_right = 157.0
+margin_bottom = 290.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="refinement" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 294.0
+margin_right = 157.0
+margin_bottom = 308.0
+text = "refinement"
+
+[node name="RefResolution" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 312.0
+margin_right = 157.0
+margin_bottom = 336.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/RefResolution"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/RefResolution"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 19.0
+text = "resolution"
+
+[node name="RefRwork" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 340.0
+margin_right = 157.0
+margin_bottom = 364.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/RefRwork"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/RefRwork"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 66.0
+margin_bottom = 19.0
+text = "Rwork"
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 368.0
+margin_right = 157.0
+margin_bottom = 392.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer10"]
+margin_right = 24.0
+margin_bottom = 24.0
+disabled = true
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer10"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 61.0
+margin_bottom = 19.0
+text = "Rfree"
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 396.0
+margin_right = 157.0
+margin_bottom = 420.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer11"]
+margin_right = 24.0
+margin_bottom = 24.0
+disabled = true
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer11"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 98.0
+margin_bottom = 19.0
+text = "RMS bonds"
+
+[node name="HBoxContainer12" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 424.0
+margin_right = 157.0
+margin_bottom = 448.0
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer12"]
+margin_right = 24.0
+margin_bottom = 24.0
+disabled = true
+
+[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer12"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 100.0
+margin_bottom = 19.0
+text = "RMS angles"
 
 [node name="Libraries" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
