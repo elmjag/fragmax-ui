@@ -1,0 +1,44 @@
+[gd_scene format=2]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+margin_right = 193.0
+margin_bottom = 24.0
+
+[node name="CheckBox" type="CheckBox" parent="."]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 128.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+text = "MtCM-x0001"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 132.0
+margin_top = 5.0
+margin_right = 232.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+text = "00:00:01"
+align = 1
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 236.0
+margin_top = 5.0
+margin_right = 336.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+text = "output errors"
+align = 1
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 340.0
+margin_top = 5.0
+margin_right = 440.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+text = "enqueued"
+align = 1

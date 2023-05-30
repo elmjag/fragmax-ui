@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/model.gd" type="Script" id=1]
 [ext_resource path="res://assets/search.svg" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scripts/DataAnalysisProcess.gd" type="Script" id=7]
 [ext_resource path="res://scripts/SamplesPane.gd" type="Script" id=8]
 [ext_resource path="res://scripts/SettingsPane.gd" type="Script" id=9]
+[ext_resource path="res://scripts/Jobs.gd" type="Script" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -193,11 +194,11 @@ margin_right = 161.0
 margin_bottom = 140.0
 text = "Libraries"
 
-[node name="JobsStatus" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="Jobs" type="Button" parent="ColorRect/Menus/Menus"]
 margin_top = 144.0
 margin_right = 161.0
 margin_bottom = 164.0
-text = "Jobs Status"
+text = "Jobs"
 
 [node name="Logout" type="Button" parent="ColorRect/Menus/Menus"]
 margin_top = 168.0
@@ -215,6 +216,7 @@ margin_bottom = -19.0
 script = ExtResource( 6 )
 
 [node name="Samples" type="VBoxContainer" parent="ColorRect/Panes"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 8 )
@@ -929,19 +931,27 @@ bbcode_text = "[center] [color=#8ff]Libraries[/color] is selected.[/center]"
 text = " Libraries is selected."
 scroll_active = false
 
-[node name="JobsStatus" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="Jobs" type="VBoxContainer" parent="ColorRect/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 3
+script = ExtResource( 11 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/JobsStatus"]
-margin_left = 431.0
-margin_top = 376.0
-margin_right = 531.0
-margin_bottom = 416.0
-rect_min_size = Vector2( 100, 40 )
-bbcode_enabled = true
-bbcode_text = "[center] [color=#8ff]Job Status[/color] is selected.[/center]"
-text = " Job Status is selected."
-scroll_active = false
+[node name="JobSets" type="VBoxContainer" parent="ColorRect/Panes/Jobs"]
+margin_right = 962.0
+
+[node name="SpaceBuffer3" type="Control" parent="ColorRect/Panes/Jobs"]
+margin_top = 4.0
+margin_right = 962.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="abortContainer" type="HBoxContainer" parent="ColorRect/Panes/Jobs"]
+margin_top = 38.0
+margin_right = 962.0
+margin_bottom = 58.0
+
+[node name="abort" type="Button" parent="ColorRect/Panes/Jobs/abortContainer"]
+margin_right = 84.0
+margin_bottom = 20.0
+text = "abort job(s)"

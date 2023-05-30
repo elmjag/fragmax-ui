@@ -25,7 +25,7 @@ func _ready():
     _connect_menu(find_node("ProjectDetails"))
     _connect_menu(get_node("Settings"))
     _connect_menu(get_node("Libraries"))
-    _connect_menu(get_node("JobsStatus"))
+    _connect_menu(get_node("Jobs"))
 
 
 func _connect_menu(menu_button, pane_name = null):

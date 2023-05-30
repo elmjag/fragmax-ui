@@ -12,6 +12,9 @@ enum Actions {
     # 'Samples' section on 'Processing' page
     TOGGLE_SAMPLES_EXPANDED,
 
+    # a jobs set on 'Jobs' page
+    TOGGLE_JOBS_SET_EXPAND,
+
     # sample selection/deselected on 'Processing' page
     SET_PROC_SAMPLE_SELECTED,
 
@@ -71,6 +74,7 @@ class SettingsUI:
 class UI:
     var current_pane = "Samples"
     var expanded_samples = utils.Set.new()
+    var expanded_job_sets = utils.Set.new()
     var process = ProcessUI.new()
     var settings = SettingsUI.new()
 
@@ -203,6 +207,23 @@ class Crystal:
         return "|Crystal " + self.id + "|"
 
 
+class Job:
+    var crystal: Crystal
+    var progress = "enqueued"
+
+    func _init(crystal):
+        self.crystal = crystal
+
+
+class JobsSet:
+    var description: String
+    var jobs: Array
+
+    func _init(description, jobs):
+        self.description = description
+        self.jobs = jobs
+
+
 class State:
     var ui = UI.new()
     var crystals = [
@@ -285,6 +306,22 @@ class State:
         ]),
     ]
 
+    var jobSets = [
+        JobsSet.new("processing 3 datasets with XIA2/DIALS",
+        [
+            Job.new(self.crystals[0]),
+            Job.new(self.crystals[1]),
+            Job.new(self.crystals[3]),
+        ]),
+        JobsSet.new("processing 4 datasets with XIA2/XDS",
+        [
+            Job.new(self.crystals[2]),
+            Job.new(self.crystals[4]),
+            Job.new(self.crystals[5]),
+            Job.new(self.crystals[6]),
+        ]),
+       ]
+
     func _init():
         # start with all sessions visible
         for session in self.get_sessions():
@@ -335,6 +372,15 @@ func _toggle_sample_expand(crystal_id):
         expanded_set.remove(crystal_id)
     else:
         expanded_set.add(crystal_id)
+
+
+func _toggle_jobs_set_expand(jobs_set):
+    var expanded_job_sets = state.ui.expanded_job_sets
+
+    if expanded_job_sets.contains(jobs_set):
+        expanded_job_sets.remove(jobs_set)
+    else:
+        expanded_job_sets.add(jobs_set)
 
 
 func _set_proc_sample_selected(crystal_id, selected):
@@ -400,7 +446,8 @@ func do(action, arg):
             _process_selected_samples()
         Actions.UPDATE_SETTINGS:
             _update_setting(arg[0], arg[1])
-
+        Actions.TOGGLE_JOBS_SET_EXPAND:
+            _toggle_jobs_set_expand(arg)
 
     self.call_deferred("_emit_model_updated_signal")
 
