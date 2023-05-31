@@ -1,9 +1,10 @@
 const utils = preload("res://scripts/utils.gd")
+const tools = preload("res://scripts/tools.gd")
 
 
 static func _proc_crystal_desc(crystal):
     var desc = {
-        "crystal_id": crystal.id,
+        "crystal": crystal,
         "dataset": "",
         "proc_res": {"name": "", "success": true},
         "status": "unprocessed",
@@ -78,4 +79,4 @@ static func get_sessions(state):
 
 static func get_selected_process_tool(state):
     var process = state.ui.process
-    return process.tools[process.selected_tool_idx]
+    return tools.get_proc_tools()[process.selected_tool_idx]

@@ -1,8 +1,13 @@
 extends Node
 
+const utils = preload("res://scripts/utils.gd")
+const tools = preload("res://scripts/tools.gd")
+const state_views = preload("res://scripts/state_views.gd")
+
 class_name Model
 
 signal model_updated(state)
+
 
 enum Actions {
     SELECT_PANE,
@@ -36,14 +41,25 @@ enum Actions {
     # set selected processing tool on 'Processing' page
     SET_PROC_TOOL,
 
+    # create jobs to process samples
     PROCESS_SELECTED_SAMPLES,
 
     # project settings have changed
     UPDATE_SETTINGS,
+
+    # change job's progress status
+    SET_JOB_PROGRESS,
 }
 
-const utils = preload("res://scripts/utils.gd")
-const state_views = preload("res://scripts/state_views.gd")
+
+enum JobStatus {
+    ENQUEUED,
+    RUNNING,
+    DONE,
+    FAILED,
+    ABORTED,
+}
+
 
 # Data Analysis -> Process pane state
 class ProcessUI:
@@ -51,9 +67,9 @@ class ProcessUI:
     var text_filter = ""
     var selected_samples = utils.Set.new()
     var visible_sessions = utils.Set.new()
-    var tools = ["EDNA_proc", "XIA2/DIALS", "XIA2/XDS", "XDSAPP"]
     var selected_tool_idx = 0
-    var visible_tools = utils.Set.new()
+    # start with all tools visible
+    var visible_tools = utils.Set.new(tools.get_proc_tools())
     var visible_status = utils.Set.new(["unprocessed", "processed", "failure"])
 
 # Settings pane state
@@ -170,6 +186,20 @@ class DataSet:
 
         return null
 
+    func add_proc_result(proc_result):
+        proc_result.set_input(self)
+
+        # if dataset already have a processing result with
+        # same tool, overwrite it
+        for i in range(0, self.results.size()):
+            if self.results[i].tool_name == proc_result.tool_name:
+                self.results[i] = proc_result
+                return
+
+        # processing result with new tool
+        self.results.append(proc_result)
+
+
     func _to_string():
         return "|DataSet " + self.crystal.id + "-" + str(self.run) + "|"
 
@@ -194,6 +224,15 @@ class Crystal:
         assert(len(self.datasets) > 0)
         return self.datasets[0]
 
+    func get_selected_dataset():
+        match selected.type:
+            "DataSet":
+                return selected
+            "ProcResult":
+                return selected.input
+            "RefineResult":
+                return selected.input.input
+
     func _init(id, datasets):
         self.id = id
         self.datasets = datasets
@@ -209,10 +248,13 @@ class Crystal:
 
 class Job:
     var crystal: Crystal
-    var progress = "enqueued"
+    var tool_name: String
+    var progress = JobStatus.ENQUEUED
 
-    func _init(crystal):
+    func _init(crystal, tool_name, progress=JobStatus.ENQUEUED):
         self.crystal = crystal
+        self.tool_name = tool_name
+        self.progress = progress
 
 
 class JobsSet:
@@ -222,6 +264,13 @@ class JobsSet:
     func _init(description, jobs):
         self.description = description
         self.jobs = jobs
+
+    func is_active():
+        for job in self.jobs:
+            if not (job.progress in [JobStatus.DONE, JobStatus.FAILED, JobStatus.ABORTED]):
+                return true
+
+        return false
 
 
 class State:
@@ -271,11 +320,11 @@ class State:
         Crystal.new("MtCM-x0080", [
             DataSet.new(1, "20230225",
             [
-                ProcResult.new("XDSAPP", true, "", "26.7",
+                ProcResult.new("XDSAPP", true, "P41212", "26.7",
                 [
                     RefineResult.new("DIMPLE", true, 1.95, "0.23"),
                 ]),
-                ProcResult.new("EDNA_proc", false, "P41212", "", []),
+                ProcResult.new("EDNA_proc", false, "", "", []),
             ]),
         ]),
         Crystal.new("MtCM-x0081", [
@@ -306,31 +355,13 @@ class State:
         ]),
     ]
 
-    var jobSets = [
-        JobsSet.new("processing 3 datasets with XIA2/DIALS",
-        [
-            Job.new(self.crystals[0]),
-            Job.new(self.crystals[1]),
-            Job.new(self.crystals[3]),
-        ]),
-        JobsSet.new("processing 4 datasets with XIA2/XDS",
-        [
-            Job.new(self.crystals[2]),
-            Job.new(self.crystals[4]),
-            Job.new(self.crystals[5]),
-            Job.new(self.crystals[6]),
-        ]),
-       ]
+    var active_job_sets = []
+    var finished_job_sets = []
 
     func _init():
         # start with all sessions visible
         for session in self.get_sessions():
             self.ui.process.visible_sessions.add(session)
-
-        # start with all tools visible
-        for tool_name in self.ui.process.tools:
-            self.ui.process.visible_tools.add(tool_name)
-
 
     #
     # short-cut views of the state
@@ -383,13 +414,13 @@ func _toggle_jobs_set_expand(jobs_set):
         expanded_job_sets.add(jobs_set)
 
 
-func _set_proc_sample_selected(crystal_id, selected):
-    state.ui.process.selected_samples.set_included(crystal_id, selected)
+func _set_proc_sample_selected(crystal, selected):
+    state.ui.process.selected_samples.set_included(crystal, selected)
 
 
 func _toggle_proc_visible_samples_selected(selected: bool):
     for desc in state.get_proc_visisble_samples():
-        state.ui.process.selected_samples.set_included(desc.crystal_id, selected)
+        state.ui.process.selected_samples.set_included(desc.crystal, selected)
 
 
 func _set_proc_session_filter(session, show: bool):
@@ -408,14 +439,42 @@ func _process_selected_samples():
     var process = state.ui.process
 
     var tool_name = state.get_selected_process_tool()
-    print("process with %s" % tool_name)
 
-    for sample in process.selected_samples.as_list():
-        print(sample)
+    var jobs = []
+
+    for crystal in process.selected_samples.as_list():
+        jobs.append(Job.new(crystal, tool_name))
+
+    var jobs_set = JobsSet.new("process %s datasets with %s" % [len(jobs), tool_name], jobs)
+    state.active_job_sets.append(jobs_set)
 
 
 func _update_setting(name, value):
     state.ui.settings.show[name] = value
+
+#
+# set/override current selected processing result for a crystal
+#
+func _set_new_proc_result(crystal, tool_name):
+    var dataset = crystal.get_selected_dataset()
+    var proc_res = ProcResult.new(tool_name, true, "C2221", "6.1", [])
+    dataset.add_proc_result(proc_res)
+
+    crystal.selected = proc_res
+
+
+func _set_job_progress(jobs_set, job, progress):
+    job.progress = progress
+
+    if not jobs_set.is_active():
+        var active = state.active_job_sets
+        active.remove(active.find(jobs_set))
+        state.finished_job_sets.append(jobs_set)
+
+    if progress == JobStatus.DONE:
+        # processing job finished, set new processsing result
+        if tools.is_proc_tool(job.tool_name):
+            _set_new_proc_result(job.crystal, job.tool_name)
 
 
 func do(action, arg):
@@ -448,6 +507,8 @@ func do(action, arg):
             _update_setting(arg[0], arg[1])
         Actions.TOGGLE_JOBS_SET_EXPAND:
             _toggle_jobs_set_expand(arg)
+        Actions.SET_JOB_PROGRESS:
+            _set_job_progress(arg[0], arg[1], arg[2])
 
     self.call_deferred("_emit_model_updated_signal")
 

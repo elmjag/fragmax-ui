@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 const utils = preload("res://scripts/utils.gd")
+const tools = preload("res://scripts/tools.gd")
 const row_scene = preload("res://scenes/proc_sample_row.tscn")
 
 onready var model = get_node("/root/Control/model")
@@ -74,8 +75,8 @@ func _on_status_filter_toggle(index):
     model.do(Model.Actions.SET_PROC_STATUS_FILTER, [status, include])
 
 
-func _sample_selection_toggled(selected, crystal_id):
-    model.do(Model.Actions.SET_PROC_SAMPLE_SELECTED, [crystal_id, selected])
+func _sample_selection_toggled(selected, crystal):
+    model.do(Model.Actions.SET_PROC_SAMPLE_SELECTED, [crystal, selected])
 
 
 func _on_proc_tool_selected(index: int):
@@ -84,6 +85,7 @@ func _on_proc_tool_selected(index: int):
 
 func _on_process_pressed():
     model.do(Model.Actions.PROCESS_SELECTED_SAMPLES, null)
+    model.do(Model.Actions.SELECT_PANE, "Jobs")
 
 
 func _get_row(desc, selected):
@@ -93,8 +95,8 @@ func _get_row(desc, selected):
     var children = row.get_children()
 
     children[0].pressed = selected
-    children[0].connect("toggled", self, "_sample_selection_toggled", [desc.crystal_id])
-    children[1].text = desc.crystal_id
+    children[0].connect("toggled", self, "_sample_selection_toggled", [desc.crystal])
+    children[1].text = desc.crystal.id
     children[2].text = str(dataset.run)
     children[3].text = dataset.session
     children[4].text = desc.proc_res.name
@@ -131,7 +133,7 @@ func _update_tools_filter(state):
 
     var visible_tools = state.ui.process.visible_tools
 
-    for tool_name in state.ui.process.tools:
+    for tool_name in tools.get_proc_tools():
         tools_filter.add_check_item(tool_name)
 
     for i in range(0, tools_filter.get_item_count()):
@@ -172,14 +174,14 @@ func _update_samples_section(state):
 
     var visible_samples = state.get_proc_visisble_samples()
     for desc in visible_samples:
-        var selected = process_ui.selected_samples.contains(desc.crystal_id)
+        var selected = process_ui.selected_samples.contains(desc.crystal)
         _add_row(_get_row(desc, selected))
 
 
 func _update_processing_section(state):
     proc_tool.clear()
 
-    for tool_name in state.ui.process.tools:
+    for tool_name in tools.get_proc_tools():
         proc_tool.add_item(tool_name)
 
     proc_tool.select(state.ui.process.selected_tool_idx)
