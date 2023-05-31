@@ -1,0 +1,27 @@
+Following columns would be nice to have on 'Samples' page.
+
+
+# unit_cell ->  unit_cell_a + .. + unit_cell_alpha + ...
+
+# space_group
+# high_resolution_out
+# i_sig_out
+# completeness_average
+# completeness_out
+
+# additionally need:
+# lattice + point_group:
+#   mtz = gemmi.read_mtz_file(mtzfile)
+#   mtz.spacegroup.hm[0]
+#   mtz.spacegroup.point_group_hm()
+# r_meas_inner
+# r_merge_inner
+# cc_12_out
+# cc_12_average
+
+# space_group (refinement)
+# r_work
+# r_free
+# rms_bonds
+# rms_angles
+# result (???)
