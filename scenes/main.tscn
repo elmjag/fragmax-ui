@@ -534,24 +534,638 @@ margin_bottom = 273.0
 margin_right = 122.0
 margin_bottom = 20.0
 grow_horizontal = 2
-text = "Process Datasets"
+text = "Process Samples"
 
-[node name="DataAnalysisRefine" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="DataAnalysisRefine" type="VBoxContainer" parent="ColorRect/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/DataAnalysisRefine"]
-margin_left = 431.0
-margin_top = 376.0
-margin_right = 531.0
-margin_bottom = 416.0
-rect_min_size = Vector2( 100, 40 )
-bbcode_enabled = true
-bbcode_text = "[center] [color=#8ff]Data Analysis Refine[/color] is selected.[/center]"
-text = " Data Analysis Refine is selected."
-scroll_active = false
+[node name="ModelHeader" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_right = 962.0
+margin_bottom = 20.0
+
+[node name="expand" type="Button" parent="ColorRect/Panes/DataAnalysisRefine/ModelHeader"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+text = " "
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelHeader"]
+margin_left = 24.0
+margin_top = 3.0
+margin_right = 107.0
+margin_bottom = 17.0
+text = "Target Model"
+
+[node name="SpaceBuffer5" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 24.0
+margin_right = 962.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 8 )
+
+[node name="ModelCols" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 36.0
+margin_right = 962.0
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+margin_right = 130.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 130, 0 )
+text = "PDB Model"
+
+[node name="Label2" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+margin_left = 134.0
+margin_right = 234.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 100, 0 )
+text = "Space Group"
+align = 1
+
+[node name="Label3" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+margin_left = 238.0
+margin_right = 268.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 30, 0 )
+text = "a"
+align = 1
+
+[node name="Label4" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+margin_left = 272.0
+margin_right = 302.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 30, 0 )
+text = "b"
+align = 1
+
+[node name="Label5" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+margin_left = 306.0
+margin_right = 336.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 30, 0 )
+text = "c"
+align = 1
+
+[node name="Label6" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+margin_left = 340.0
+margin_right = 380.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+text = "alpha"
+align = 1
+
+[node name="Label7" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+margin_left = 384.0
+margin_right = 424.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+text = "beta"
+align = 1
+
+[node name="Label8" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+margin_left = 428.0
+margin_right = 478.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 50, 0 )
+text = "gamma"
+align = 1
+
+[node name="SpaceBuffer7" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 54.0
+margin_right = 962.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 0, 8 )
+
+[node name="ModelCols2" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 66.0
+margin_right = 962.0
+margin_bottom = 86.0
+
+[node name="pdbs" type="OptionButton" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+margin_right = 130.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 130, 0 )
+text = "MtCMref.pdb"
+items = [ "MtCMref.pdb", null, false, 0, null, "MtCMref-2.pdb", null, false, 1, null ]
+selected = 0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+margin_left = 134.0
+margin_top = 3.0
+margin_right = 234.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 100, 0 )
+text = "P43212"
+align = 1
+
+[node name="Label2" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+margin_left = 238.0
+margin_top = 3.0
+margin_right = 268.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 30, 0 )
+text = "60.0"
+align = 1
+
+[node name="Label5" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+margin_left = 272.0
+margin_top = 3.0
+margin_right = 300.0
+margin_bottom = 17.0
+text = "60.0"
+
+[node name="Label6" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+margin_left = 304.0
+margin_top = 3.0
+margin_right = 334.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 30, 0 )
+text = "43.9"
+align = 1
+
+[node name="Label7" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+margin_left = 338.0
+margin_top = 3.0
+margin_right = 378.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="Label8" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+margin_left = 382.0
+margin_top = 3.0
+margin_right = 422.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="Label9" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+margin_left = 426.0
+margin_top = 3.0
+margin_right = 476.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 50, 0 )
+text = "90.0"
+align = 1
+
+[node name="SpaceBuffer6" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 90.0
+margin_right = 962.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 0, 16 )
+
+[node name="SamplesHeader" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 110.0
+margin_right = 962.0
+margin_bottom = 130.0
+
+[node name="expand" type="Button" parent="ColorRect/Panes/DataAnalysisRefine/SamplesHeader"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+text = "+"
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/SamplesHeader"]
+margin_left = 24.0
+margin_top = 3.0
+margin_right = 78.0
+margin_bottom = 17.0
+text = "Samples"
+
+[node name="SpaceBuffer4" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 134.0
+margin_right = 962.0
+margin_bottom = 142.0
+rect_min_size = Vector2( 0, 8 )
+
+[node name="Samples" type="VBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 146.0
+margin_right = 962.0
+margin_bottom = 267.0
+
+[node name="SamplesSelection" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine/Samples"]
+margin_right = 962.0
+margin_bottom = 25.0
+
+[node name="selectAll" type="CheckBox" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+margin_right = 24.0
+margin_bottom = 25.0
+
+[node name="Control" type="Control" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 32, 25 )
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 16, 16 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 2 )
+expand = true
+flip_h = true
+
+[node name="text" type="LineEdit" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+margin_left = 64.0
+margin_right = 160.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 96, 0 )
+
+[node name="sessions" type="MenuButton" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+margin_left = 164.0
+margin_right = 232.0
+margin_bottom = 25.0
+focus_mode = 2
+keep_pressed_outside = true
+text = "sessions"
+flat = false
+
+[node name="tools" type="MenuButton" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+margin_left = 236.0
+margin_right = 280.0
+margin_bottom = 25.0
+focus_mode = 2
+keep_pressed_outside = true
+text = "tools"
+flat = false
+
+[node name="status" type="MenuButton" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+margin_left = 284.0
+margin_right = 335.0
+margin_bottom = 25.0
+focus_mode = 2
+keep_pressed_outside = true
+text = "status"
+flat = false
+
+[node name="SpaceBuffer8" type="Control" parent="ColorRect/Panes/DataAnalysisRefine/Samples"]
+margin_top = 29.0
+margin_right = 962.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 8 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine/Samples"]
+margin_top = 41.0
+margin_right = 962.0
+margin_bottom = 65.0
+
+[node name="selectAll" type="CheckBox" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 118.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 90, 0 )
+text = "MtCM-x0002"
+
+[node name="Label2" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+margin_left = 122.0
+margin_top = 5.0
+margin_right = 142.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 20, 0 )
+text = "1"
+align = 1
+
+[node name="Label3" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+margin_left = 146.0
+margin_top = 5.0
+margin_right = 196.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 50, 0 )
+text = "P43212"
+align = 1
+
+[node name="Label4" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+margin_left = 200.0
+margin_top = 5.0
+margin_right = 240.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "59.76"
+align = 1
+
+[node name="Label5" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+margin_left = 244.0
+margin_top = 5.0
+margin_right = 284.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "59.76"
+align = 1
+
+[node name="Label6" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+margin_left = 288.0
+margin_top = 5.0
+margin_right = 328.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "47.55"
+align = 1
+
+[node name="Label7" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+margin_left = 332.0
+margin_top = 5.0
+margin_right = 372.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="Label8" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+margin_left = 376.0
+margin_top = 5.0
+margin_right = 416.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="Label9" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+margin_left = 420.0
+margin_top = 5.0
+margin_right = 460.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine/Samples"]
+margin_top = 69.0
+margin_right = 962.0
+margin_bottom = 93.0
+
+[node name="selectAll" type="CheckBox" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 118.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 90, 0 )
+text = "MtCM-x0008"
+
+[node name="Label2" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+margin_left = 122.0
+margin_top = 5.0
+margin_right = 142.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 20, 0 )
+text = "1"
+align = 1
+
+[node name="Label3" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+margin_left = 146.0
+margin_top = 5.0
+margin_right = 196.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 50, 0 )
+text = "P41212"
+align = 1
+
+[node name="Label4" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+margin_left = 200.0
+margin_top = 5.0
+margin_right = 240.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "59.93"
+align = 1
+
+[node name="Label5" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+margin_left = 244.0
+margin_top = 5.0
+margin_right = 284.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "59.93"
+align = 1
+
+[node name="Label6" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+margin_left = 288.0
+margin_top = 5.0
+margin_right = 328.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "47.06"
+align = 1
+
+[node name="Label7" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+margin_left = 332.0
+margin_top = 5.0
+margin_right = 372.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="Label8" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+margin_left = 376.0
+margin_top = 5.0
+margin_right = 416.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="Label9" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+margin_left = 420.0
+margin_top = 5.0
+margin_right = 460.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine/Samples"]
+margin_top = 97.0
+margin_right = 962.0
+margin_bottom = 121.0
+
+[node name="selectAll" type="CheckBox" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 118.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 90, 0 )
+text = "MtCM-x0009"
+
+[node name="Label2" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+margin_left = 122.0
+margin_top = 5.0
+margin_right = 142.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 20, 0 )
+text = "1"
+align = 1
+
+[node name="Label3" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+margin_left = 146.0
+margin_top = 5.0
+margin_right = 196.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 50, 0 )
+text = "P41212"
+align = 1
+
+[node name="Label4" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+margin_left = 200.0
+margin_top = 5.0
+margin_right = 240.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "59.98"
+align = 1
+
+[node name="Label5" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+margin_left = 244.0
+margin_top = 5.0
+margin_right = 284.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "59.98"
+align = 1
+
+[node name="Label6" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+margin_left = 288.0
+margin_top = 5.0
+margin_right = 328.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "47.04	"
+align = 1
+
+[node name="Label7" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+margin_left = 332.0
+margin_top = 5.0
+margin_right = 372.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="Label8" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+margin_left = 376.0
+margin_top = 5.0
+margin_right = 416.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="Label9" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+margin_left = 420.0
+margin_top = 5.0
+margin_right = 460.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 0 )
+text = "90.0"
+align = 1
+
+[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 271.0
+margin_right = 962.0
+margin_bottom = 291.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="ProcessingHeader" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 295.0
+margin_right = 962.0
+margin_bottom = 309.0
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ProcessingHeader"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Refine"
+
+[node name="SpaceBuffer2" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 313.0
+margin_right = 962.0
+margin_bottom = 321.0
+rect_min_size = Vector2( 0, 8 )
+
+[node name="Tool" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 325.0
+margin_right = 962.0
+margin_bottom = 345.0
+
+[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisRefine/Tool"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Tool"]
+margin_left = 24.0
+margin_top = 3.0
+margin_right = 154.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 130, 0 )
+text = "Refine with:"
+
+[node name="tool" type="OptionButton" parent="ColorRect/Panes/DataAnalysisRefine/Tool"]
+margin_left = 158.0
+margin_right = 236.0
+margin_bottom = 20.0
+text = "DIMPLE"
+items = [ "DIMPLE", null, false, 0, null, "fspipeline", null, false, 1, null ]
+selected = 0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 349.0
+margin_right = 962.0
+margin_bottom = 373.0
+
+[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisRefine/HBoxContainer4"]
+margin_right = 20.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/HBoxContainer4"]
+margin_left = 24.0
+margin_top = 5.0
+margin_right = 154.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 130, 0 )
+text = "Custom parameters"
+
+[node name="LineEdit" type="LineEdit" parent="ColorRect/Panes/DataAnalysisRefine/HBoxContainer4"]
+margin_left = 158.0
+margin_right = 378.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 220, 0 )
+
+[node name="SpaceBuffer3" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 377.0
+margin_right = 962.0
+margin_bottom = 407.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="ProcessButton" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+margin_top = 411.0
+margin_right = 962.0
+margin_bottom = 431.0
+
+[node name="Refine" type="Button" parent="ColorRect/Panes/DataAnalysisRefine/ProcessButton"]
+margin_right = 110.0
+margin_bottom = 20.0
+grow_horizontal = 2
+text = "Refine Samples"
 
 [node name="DataAnalysisFitLigands" type="CenterContainer" parent="ColorRect/Panes"]
 visible = false
