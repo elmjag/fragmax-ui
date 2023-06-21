@@ -11,6 +11,7 @@ onready var proc_multiplicity = get_node("Headers/multiplicity")
 onready var resolution = get_node("Headers/resolution")
 onready var rwork = get_node("Headers/rwork")
 onready var picture = get_node("Headers/picture")
+onready var structure = get_node("Headers/structure")
 onready var dozer_graph = get_node("Headers/dozer")
 
 var added_elemens = []
@@ -61,6 +62,17 @@ func _on_sample_option_toggled(pressed, crystal, option):
     model.do(Model.Actions.SWITCH_SAMPLE_OPTION, {"crystal":crystal, "option":option})
 
 
+func _on_structure_click(event, crystal_id):
+    if not (event is InputEventMouseButton):
+        # not a mouse click, ignore
+        return
+
+    if event.button_index != 1 or event.pressed:
+        # not a 'button 1' click, ignore
+        return
+
+    model.do(Model.Actions.SHOW_CRYSTAL_STRUCTURE, crystal_id)
+
 func _get_row(crystal, expanded, show):
     var desc = _selected_desc(crystal.selected)
 
@@ -105,11 +117,16 @@ func _get_row(crystal, expanded, show):
     # r_work
     children[8].visible = show.ref_rwork
 
+    # structure
+    children[9].visible = show.structure
+    children[9].connect("gui_input", self, "_on_structure_click", [crystal.id])
+
+
     # picture
-    children[9].visible = show.crystal_picture
+    children[10].visible = show.crystal_picture
 
     # dozer
-    children[10].visible = show.dozer_graph
+    children[11].visible = show.dozer_graph
 
     return row
 
@@ -136,8 +153,6 @@ func _get_option_row(crystal, button_group, option):
         children[4].text = desc.refine_res.name
         if not desc.refine_res.success:
             children[4].add_color_override("font_color", Color.crimson)
-
-#    children[5].text = str(dataset.resolution)
 
     return row
 
@@ -175,6 +190,7 @@ func _update_visible_col_headers(show):
     proc_multiplicity.visible = show.proc_multiplicity
     resolution.visible = show.ref_resolution
     rwork.visible = show.ref_rwork
+    structure.visible = show.structure
     picture.visible = show.crystal_picture
     dozer_graph.visible = show.dozer_graph
 

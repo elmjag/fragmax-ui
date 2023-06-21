@@ -9,6 +9,7 @@ onready var proc_space_group = get_node("SamplesViewOpts/Options/ProcSpaceGroup/
 onready var proc_multiplicity = get_node("SamplesViewOpts/Options/ProcMultiplicity/CheckBox")
 onready var ref_resolution = get_node("SamplesViewOpts/Options/RefResolution/CheckBox")
 onready var ref_rwork = get_node("SamplesViewOpts/Options/RefRwork/CheckBox")
+onready var structure = get_node("SamplesViewOpts/Options/Structure/CheckBox")
 
 
 func _ready():
@@ -18,6 +19,7 @@ func _ready():
     dozer_graph.connect("toggled", self, "_on_toggled", ["dozer_graph"])
     proc_space_group.connect("toggled", self, "_on_toggled", ["proc_space_group"])
     proc_multiplicity.connect("toggled", self, "_on_toggled", ["proc_multiplicity"])
+    structure.connect("toggled", self, "_on_toggled", ["structure"])
     ref_resolution.connect("toggled", self, "_on_toggled", ["ref_resolution"])
     ref_rwork.connect("toggled", self, "_on_toggled", ["ref_rwork"])
 
@@ -33,5 +35,6 @@ func _model_updated(state):
     dozer_graph.pressed = show.dozer_graph
     proc_space_group.pressed = show.proc_space_group
     proc_multiplicity.pressed = show.proc_multiplicity
+    structure.pressed = show.structure
     ref_resolution.pressed = show.ref_resolution
     ref_rwork.pressed = show.ref_rwork

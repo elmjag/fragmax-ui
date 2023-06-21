@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/model.gd" type="Script" id=1]
 [ext_resource path="res://assets/search.svg" type="Texture" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://scripts/SettingsPane.gd" type="Script" id=9]
 [ext_resource path="res://scripts/jobsd.gd" type="Script" id=10]
 [ext_resource path="res://scripts/Jobs.gd" type="Script" id=11]
+[ext_resource path="res://scripts/Structure.gd" type="Script" id=12]
+[ext_resource path="res://assets/electron_dencity.png" type="Texture" id=13]
+[ext_resource path="res://assets/fragment.svg" type="Texture" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -31,12 +34,12 @@ script = ExtResource( 1 )
 [node name="jobsd" type="Node" parent="."]
 script = ExtResource( 10 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Main" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.286275, 0.592157, 0.564706, 1 )
 
-[node name="Logo" type="Control" parent="ColorRect"]
+[node name="Logo" type="Control" parent="Main"]
 anchor_left = 0.02
 anchor_top = 0.045
 anchor_right = 0.02
@@ -46,7 +49,7 @@ margin_top = -13.2
 margin_right = 111.4
 margin_bottom = 86.8
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/Logo"]
+[node name="TextureRect" type="TextureRect" parent="Main/Logo"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 64, 64 )
@@ -56,164 +59,164 @@ texture = ExtResource( 4 )
 expand = true
 stretch_mode = 1
 
-[node name="Menus" type="Control" parent="ColorRect"]
+[node name="Menus" type="Control" parent="Main"]
 margin_left = 14.0
 margin_top = 151.0
 margin_right = 175.0
 margin_bottom = 556.0
 
-[node name="Menus" type="VBoxContainer" parent="ColorRect/Menus"]
+[node name="Menus" type="VBoxContainer" parent="Main/Menus"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
 
-[node name="Samples" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="Samples" type="Button" parent="Main/Menus/Menus"]
 margin_right = 161.0
 margin_bottom = 20.0
 text = "Samples"
 
-[node name="DataAnalysis" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="DataAnalysis" type="Button" parent="Main/Menus/Menus"]
 margin_top = 24.0
 margin_right = 161.0
 margin_bottom = 44.0
 text = "Data Analysis"
 
-[node name="DataAnalysisSubmenu" type="HBoxContainer" parent="ColorRect/Menus/Menus"]
+[node name="DataAnalysisSubmenu" type="HBoxContainer" parent="Main/Menus/Menus"]
 visible = false
 margin_top = 48.0
 margin_right = 161.0
 margin_bottom = 140.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu"]
+[node name="MarginContainer" type="MarginContainer" parent="Main/Menus/Menus/DataAnalysisSubmenu"]
 margin_right = 10.0
 margin_bottom = 92.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Menus/Menus/DataAnalysisSubmenu"]
 margin_left = 14.0
 margin_right = 161.0
 margin_bottom = 92.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
-[node name="DataAnalysisProcess" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="DataAnalysisProcess" type="Button" parent="Main/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_right = 147.0
 margin_bottom = 20.0
 text = "Process"
 
-[node name="DataAnalysisRefine" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="DataAnalysisRefine" type="Button" parent="Main/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_top = 24.0
 margin_right = 147.0
 margin_bottom = 44.0
 text = "Refine"
 
-[node name="DataAnalysisFitLigands" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="DataAnalysisFitLigands" type="Button" parent="Main/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_top = 48.0
 margin_right = 147.0
 margin_bottom = 68.0
 text = "Fit Ligands"
 
-[node name="DataAnalysisPandda" type="Button" parent="ColorRect/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
+[node name="DataAnalysisPandda" type="Button" parent="Main/Menus/Menus/DataAnalysisSubmenu/VBoxContainer"]
 margin_top = 72.0
 margin_right = 147.0
 margin_bottom = 92.0
 text = "PanDDA"
 
-[node name="PanDDA" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="PanDDA" type="Button" parent="Main/Menus/Menus"]
 margin_top = 48.0
 margin_right = 161.0
 margin_bottom = 68.0
 text = "PanDDA"
 
-[node name="PanDDASubmenu" type="HBoxContainer" parent="ColorRect/Menus/Menus"]
+[node name="PanDDASubmenu" type="HBoxContainer" parent="Main/Menus/Menus"]
 visible = false
 margin_top = 140.0
 margin_right = 98.0
 margin_bottom = 184.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/PanDDASubmenu"]
+[node name="MarginContainer" type="MarginContainer" parent="Main/Menus/Menus/PanDDASubmenu"]
 margin_right = 10.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/PanDDASubmenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Menus/Menus/PanDDASubmenu"]
 margin_left = 14.0
 margin_right = 98.0
 margin_bottom = 44.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
-[node name="PanddaAnalyse" type="Button" parent="ColorRect/Menus/Menus/PanDDASubmenu/VBoxContainer"]
+[node name="PanddaAnalyse" type="Button" parent="Main/Menus/Menus/PanDDASubmenu/VBoxContainer"]
 margin_right = 84.0
 margin_bottom = 20.0
 text = "Analyse"
 
-[node name="PanddaInspect" type="Button" parent="ColorRect/Menus/Menus/PanDDASubmenu/VBoxContainer"]
+[node name="PanddaInspect" type="Button" parent="Main/Menus/Menus/PanDDASubmenu/VBoxContainer"]
 margin_top = 24.0
 margin_right = 84.0
 margin_bottom = 44.0
 text = "Inspect"
 
-[node name="Project" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="Project" type="Button" parent="Main/Menus/Menus"]
 margin_top = 72.0
 margin_right = 161.0
 margin_bottom = 92.0
 text = "Project"
 
-[node name="ProjectSubmenu" type="HBoxContainer" parent="ColorRect/Menus/Menus"]
+[node name="ProjectSubmenu" type="HBoxContainer" parent="Main/Menus/Menus"]
 visible = false
 margin_top = 96.0
 margin_right = 161.0
 margin_bottom = 164.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Menus/Menus/ProjectSubmenu"]
+[node name="MarginContainer" type="MarginContainer" parent="Main/Menus/Menus/ProjectSubmenu"]
 margin_right = 10.0
 margin_bottom = 68.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Menus/Menus/ProjectSubmenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Menus/Menus/ProjectSubmenu"]
 margin_left = 14.0
 margin_right = 161.0
 margin_bottom = 68.0
 rect_pivot_offset = Vector2( -244, -85 )
 size_flags_horizontal = 3
 
-[node name="ProjectPDBs" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
+[node name="ProjectPDBs" type="Button" parent="Main/Menus/Menus/ProjectSubmenu/VBoxContainer"]
 margin_right = 147.0
 margin_bottom = 20.0
 text = "PDBs"
 
-[node name="ProjectDetails" type="Button" parent="ColorRect/Menus/Menus/ProjectSubmenu/VBoxContainer"]
+[node name="ProjectDetails" type="Button" parent="Main/Menus/Menus/ProjectSubmenu/VBoxContainer"]
 margin_top = 24.0
 margin_right = 147.0
 margin_bottom = 44.0
 text = "Details"
 
-[node name="Settings" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="Settings" type="Button" parent="Main/Menus/Menus"]
 margin_top = 96.0
 margin_right = 161.0
 margin_bottom = 116.0
 text = "Settings"
 
-[node name="Libraries" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="Libraries" type="Button" parent="Main/Menus/Menus"]
 margin_top = 120.0
 margin_right = 161.0
 margin_bottom = 140.0
 text = "Libraries"
 
-[node name="Jobs" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="Jobs" type="Button" parent="Main/Menus/Menus"]
 margin_top = 144.0
 margin_right = 161.0
 margin_bottom = 164.0
 text = "Jobs"
 
-[node name="Logout" type="Button" parent="ColorRect/Menus/Menus"]
+[node name="Logout" type="Button" parent="Main/Menus/Menus"]
 margin_top = 168.0
 margin_right = 161.0
 margin_bottom = 188.0
 text = "Logout"
 
-[node name="Panes" type="Control" parent="ColorRect"]
+[node name="Panes" type="Control" parent="Main"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 246.0
@@ -222,24 +225,23 @@ margin_right = -72.0
 margin_bottom = -19.0
 script = ExtResource( 6 )
 
-[node name="Samples" type="VBoxContainer" parent="ColorRect/Panes"]
-visible = false
+[node name="Samples" type="VBoxContainer" parent="Main/Panes"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 8 )
 
-[node name="Headers" type="HBoxContainer" parent="ColorRect/Panes/Samples"]
+[node name="Headers" type="HBoxContainer" parent="Main/Panes/Samples"]
 margin_right = 962.0
 margin_bottom = 22.0
 
-[node name="crystal" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+[node name="crystal" type="Label" parent="Main/Panes/Samples/Headers"]
 margin_right = 100.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "crystal"
 
-[node name="run" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+[node name="run" type="Label" parent="Main/Panes/Samples/Headers"]
 margin_left = 104.0
 margin_right = 136.0
 margin_bottom = 22.0
@@ -247,7 +249,7 @@ rect_min_size = Vector2( 32, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "run"
 
-[node name="processing" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+[node name="processing" type="Label" parent="Main/Panes/Samples/Headers"]
 margin_left = 140.0
 margin_right = 230.0
 margin_bottom = 22.0
@@ -255,7 +257,7 @@ rect_min_size = Vector2( 90, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "processing"
 
-[node name="refinement" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+[node name="refinement" type="Label" parent="Main/Panes/Samples/Headers"]
 margin_left = 234.0
 margin_right = 325.0
 margin_bottom = 22.0
@@ -263,7 +265,7 @@ rect_min_size = Vector2( 90, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "refinement"
 
-[node name="spaceGroup" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+[node name="spaceGroup" type="Label" parent="Main/Panes/Samples/Headers"]
 margin_left = 329.0
 margin_right = 434.0
 margin_bottom = 22.0
@@ -271,7 +273,7 @@ rect_min_size = Vector2( 105, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "space group"
 
-[node name="multiplicity" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+[node name="multiplicity" type="Label" parent="Main/Panes/Samples/Headers"]
 margin_left = 438.0
 margin_right = 533.0
 margin_bottom = 22.0
@@ -279,7 +281,7 @@ rect_min_size = Vector2( 95, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "multiplicity"
 
-[node name="resolution" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+[node name="resolution" type="Label" parent="Main/Panes/Samples/Headers"]
 margin_left = 537.0
 margin_right = 627.0
 margin_bottom = 22.0
@@ -287,7 +289,7 @@ rect_min_size = Vector2( 90, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "resolution"
 
-[node name="rwork" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+[node name="rwork" type="Label" parent="Main/Panes/Samples/Headers"]
 margin_left = 631.0
 margin_right = 691.0
 margin_bottom = 22.0
@@ -295,70 +297,77 @@ rect_min_size = Vector2( 60, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "r_work"
 
-[node name="picture" type="Label" parent="ColorRect/Panes/Samples/Headers"]
+[node name="structure" type="Label" parent="Main/Panes/Samples/Headers"]
 margin_left = 695.0
-margin_right = 755.0
+margin_right = 769.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 1 )
+text = "structure"
+
+[node name="picture" type="Label" parent="Main/Panes/Samples/Headers"]
+margin_left = 773.0
+margin_right = 833.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 60, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "picture"
 
-[node name="dozer" type="Label" parent="ColorRect/Panes/Samples/Headers"]
-margin_left = 759.0
-margin_right = 805.0
+[node name="dozer" type="Label" parent="Main/Panes/Samples/Headers"]
+margin_left = 837.0
+margin_right = 883.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 1 )
 text = "dozer"
 
-[node name="DataAnalysisProcess" type="VBoxContainer" parent="ColorRect/Panes"]
+[node name="DataAnalysisProcess" type="VBoxContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
 
-[node name="SamplesHeader" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="SamplesHeader" type="HBoxContainer" parent="Main/Panes/DataAnalysisProcess"]
 margin_right = 962.0
 margin_bottom = 20.0
 
-[node name="expand" type="Button" parent="ColorRect/Panes/DataAnalysisProcess/SamplesHeader"]
+[node name="expand" type="Button" parent="Main/Panes/DataAnalysisProcess/SamplesHeader"]
 margin_right = 20.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 text = "+"
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisProcess/SamplesHeader"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisProcess/SamplesHeader"]
 margin_left = 24.0
 margin_top = 3.0
 margin_right = 78.0
 margin_bottom = 17.0
 text = "Samples"
 
-[node name="SpaceBuffer4" type="Control" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="SpaceBuffer4" type="Control" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 24.0
 margin_right = 962.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 0, 8 )
 
-[node name="Samples" type="VBoxContainer" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="Samples" type="VBoxContainer" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 36.0
 margin_right = 962.0
 margin_bottom = 61.0
 
-[node name="SamplesSelection" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisProcess/Samples"]
+[node name="SamplesSelection" type="HBoxContainer" parent="Main/Panes/DataAnalysisProcess/Samples"]
 margin_right = 962.0
 margin_bottom = 25.0
 
-[node name="selectAll" type="CheckBox" parent="ColorRect/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
+[node name="selectAll" type="CheckBox" parent="Main/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
 margin_right = 24.0
 margin_bottom = 25.0
 
-[node name="Control" type="Control" parent="ColorRect/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
+[node name="Control" type="Control" parent="Main/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
 margin_left = 28.0
 margin_right = 60.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 32, 25 )
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/Panes/DataAnalysisProcess/Samples/SamplesSelection/Control"]
+[node name="TextureRect" type="TextureRect" parent="Main/Panes/DataAnalysisProcess/Samples/SamplesSelection/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -370,13 +379,13 @@ texture = ExtResource( 2 )
 expand = true
 flip_h = true
 
-[node name="text" type="LineEdit" parent="ColorRect/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
+[node name="text" type="LineEdit" parent="Main/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
 margin_left = 64.0
 margin_right = 160.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 96, 0 )
 
-[node name="sessions" type="MenuButton" parent="ColorRect/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
+[node name="sessions" type="MenuButton" parent="Main/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
 margin_left = 164.0
 margin_right = 232.0
 margin_bottom = 25.0
@@ -384,7 +393,7 @@ keep_pressed_outside = true
 text = "sessions"
 flat = false
 
-[node name="tools" type="MenuButton" parent="ColorRect/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
+[node name="tools" type="MenuButton" parent="Main/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
 margin_left = 236.0
 margin_right = 280.0
 margin_bottom = 25.0
@@ -393,7 +402,7 @@ keep_pressed_outside = true
 text = "tools"
 flat = false
 
-[node name="status" type="MenuButton" parent="ColorRect/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
+[node name="status" type="MenuButton" parent="Main/Panes/DataAnalysisProcess/Samples/SamplesSelection"]
 margin_left = 284.0
 margin_right = 335.0
 margin_bottom = 25.0
@@ -402,39 +411,39 @@ keep_pressed_outside = true
 text = "status"
 flat = false
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 65.0
 margin_right = 962.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="ProcessingHeader" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="ProcessingHeader" type="HBoxContainer" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 89.0
 margin_right = 962.0
 margin_bottom = 103.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisProcess/ProcessingHeader"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisProcess/ProcessingHeader"]
 margin_right = 69.0
 margin_bottom = 14.0
 text = "Processing"
 
-[node name="SpaceBuffer2" type="Control" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="SpaceBuffer2" type="Control" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 107.0
 margin_right = 962.0
 margin_bottom = 115.0
 rect_min_size = Vector2( 0, 8 )
 
-[node name="Tool" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="Tool" type="HBoxContainer" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 119.0
 margin_right = 962.0
 margin_bottom = 139.0
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisProcess/Tool"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/DataAnalysisProcess/Tool"]
 margin_right = 20.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisProcess/Tool"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisProcess/Tool"]
 margin_left = 24.0
 margin_top = 3.0
 margin_right = 154.0
@@ -442,22 +451,22 @@ margin_bottom = 17.0
 rect_min_size = Vector2( 130, 0 )
 text = "Process with:"
 
-[node name="tool" type="OptionButton" parent="ColorRect/Panes/DataAnalysisProcess/Tool"]
+[node name="tool" type="OptionButton" parent="Main/Panes/DataAnalysisProcess/Tool"]
 margin_left = 158.0
 margin_right = 187.0
 margin_bottom = 20.0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 143.0
 margin_right = 962.0
 margin_bottom = 163.0
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisProcess/HBoxContainer2"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/DataAnalysisProcess/HBoxContainer2"]
 margin_right = 20.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisProcess/HBoxContainer2"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisProcess/HBoxContainer2"]
 margin_left = 24.0
 margin_top = 3.0
 margin_right = 154.0
@@ -465,23 +474,23 @@ margin_bottom = 17.0
 rect_min_size = Vector2( 130, 0 )
 text = "Space group:"
 
-[node name="Button" type="Button" parent="ColorRect/Panes/DataAnalysisProcess/HBoxContainer2"]
+[node name="Button" type="Button" parent="Main/Panes/DataAnalysisProcess/HBoxContainer2"]
 margin_left = 158.0
 margin_right = 198.0
 margin_bottom = 20.0
 text = "auto"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 167.0
 margin_right = 962.0
 margin_bottom = 187.0
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisProcess/HBoxContainer3"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/DataAnalysisProcess/HBoxContainer3"]
 margin_right = 20.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisProcess/HBoxContainer3"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisProcess/HBoxContainer3"]
 margin_left = 24.0
 margin_top = 3.0
 margin_right = 154.0
@@ -489,23 +498,23 @@ margin_bottom = 17.0
 rect_min_size = Vector2( 130, 0 )
 text = "Cell parameters"
 
-[node name="Button" type="Button" parent="ColorRect/Panes/DataAnalysisProcess/HBoxContainer3"]
+[node name="Button" type="Button" parent="Main/Panes/DataAnalysisProcess/HBoxContainer3"]
 margin_left = 158.0
 margin_right = 198.0
 margin_bottom = 20.0
 text = "auto"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 191.0
 margin_right = 962.0
 margin_bottom = 215.0
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisProcess/HBoxContainer4"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/DataAnalysisProcess/HBoxContainer4"]
 margin_right = 20.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisProcess/HBoxContainer4"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisProcess/HBoxContainer4"]
 margin_left = 24.0
 margin_top = 5.0
 margin_right = 154.0
@@ -513,69 +522,69 @@ margin_bottom = 19.0
 rect_min_size = Vector2( 130, 0 )
 text = "Custom parameters"
 
-[node name="LineEdit" type="LineEdit" parent="ColorRect/Panes/DataAnalysisProcess/HBoxContainer4"]
+[node name="LineEdit" type="LineEdit" parent="Main/Panes/DataAnalysisProcess/HBoxContainer4"]
 margin_left = 158.0
 margin_right = 378.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 220, 0 )
 
-[node name="SpaceBuffer3" type="Control" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="SpaceBuffer3" type="Control" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 219.0
 margin_right = 962.0
 margin_bottom = 249.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="ProcessButton" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisProcess"]
+[node name="ProcessButton" type="HBoxContainer" parent="Main/Panes/DataAnalysisProcess"]
 margin_top = 253.0
 margin_right = 962.0
 margin_bottom = 273.0
 
-[node name="Process" type="Button" parent="ColorRect/Panes/DataAnalysisProcess/ProcessButton"]
+[node name="Process" type="Button" parent="Main/Panes/DataAnalysisProcess/ProcessButton"]
 margin_right = 122.0
 margin_bottom = 20.0
 grow_horizontal = 2
 text = "Process Samples"
 
-[node name="DataAnalysisRefine" type="VBoxContainer" parent="ColorRect/Panes"]
+[node name="DataAnalysisRefine" type="VBoxContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="ModelHeader" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="ModelHeader" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine"]
 margin_right = 962.0
 margin_bottom = 20.0
 
-[node name="expand" type="Button" parent="ColorRect/Panes/DataAnalysisRefine/ModelHeader"]
+[node name="expand" type="Button" parent="Main/Panes/DataAnalysisRefine/ModelHeader"]
 margin_right = 20.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 text = " "
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelHeader"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelHeader"]
 margin_left = 24.0
 margin_top = 3.0
 margin_right = 107.0
 margin_bottom = 17.0
 text = "Target Model"
 
-[node name="SpaceBuffer5" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="SpaceBuffer5" type="Control" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 24.0
 margin_right = 962.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 0, 8 )
 
-[node name="ModelCols" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="ModelCols" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 36.0
 margin_right = 962.0
 margin_bottom = 50.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols"]
 margin_right = 130.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 130, 0 )
 text = "PDB Model"
 
-[node name="Label2" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+[node name="Label2" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols"]
 margin_left = 134.0
 margin_right = 234.0
 margin_bottom = 14.0
@@ -583,7 +592,7 @@ rect_min_size = Vector2( 100, 0 )
 text = "Space Group"
 align = 1
 
-[node name="Label3" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+[node name="Label3" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols"]
 margin_left = 238.0
 margin_right = 268.0
 margin_bottom = 14.0
@@ -591,7 +600,7 @@ rect_min_size = Vector2( 30, 0 )
 text = "a"
 align = 1
 
-[node name="Label4" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+[node name="Label4" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols"]
 margin_left = 272.0
 margin_right = 302.0
 margin_bottom = 14.0
@@ -599,7 +608,7 @@ rect_min_size = Vector2( 30, 0 )
 text = "b"
 align = 1
 
-[node name="Label5" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+[node name="Label5" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols"]
 margin_left = 306.0
 margin_right = 336.0
 margin_bottom = 14.0
@@ -607,7 +616,7 @@ rect_min_size = Vector2( 30, 0 )
 text = "c"
 align = 1
 
-[node name="Label6" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+[node name="Label6" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols"]
 margin_left = 340.0
 margin_right = 380.0
 margin_bottom = 14.0
@@ -615,7 +624,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "alpha"
 align = 1
 
-[node name="Label7" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+[node name="Label7" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols"]
 margin_left = 384.0
 margin_right = 424.0
 margin_bottom = 14.0
@@ -623,7 +632,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "beta"
 align = 1
 
-[node name="Label8" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols"]
+[node name="Label8" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols"]
 margin_left = 428.0
 margin_right = 478.0
 margin_bottom = 14.0
@@ -631,18 +640,18 @@ rect_min_size = Vector2( 50, 0 )
 text = "gamma"
 align = 1
 
-[node name="SpaceBuffer7" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="SpaceBuffer7" type="Control" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 54.0
 margin_right = 962.0
 margin_bottom = 62.0
 rect_min_size = Vector2( 0, 8 )
 
-[node name="ModelCols2" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="ModelCols2" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 66.0
 margin_right = 962.0
 margin_bottom = 86.0
 
-[node name="pdbs" type="OptionButton" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+[node name="pdbs" type="OptionButton" parent="Main/Panes/DataAnalysisRefine/ModelCols2"]
 margin_right = 130.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 130, 0 )
@@ -650,7 +659,7 @@ text = "MtCMref.pdb"
 items = [ "MtCMref.pdb", null, false, 0, null, "MtCMref-2.pdb", null, false, 1, null ]
 selected = 0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols2"]
 margin_left = 134.0
 margin_top = 3.0
 margin_right = 234.0
@@ -659,7 +668,7 @@ rect_min_size = Vector2( 100, 0 )
 text = "P43212"
 align = 1
 
-[node name="Label2" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+[node name="Label2" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols2"]
 margin_left = 238.0
 margin_top = 3.0
 margin_right = 268.0
@@ -668,14 +677,14 @@ rect_min_size = Vector2( 30, 0 )
 text = "60.0"
 align = 1
 
-[node name="Label5" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+[node name="Label5" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols2"]
 margin_left = 272.0
 margin_top = 3.0
 margin_right = 300.0
 margin_bottom = 17.0
 text = "60.0"
 
-[node name="Label6" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+[node name="Label6" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols2"]
 margin_left = 304.0
 margin_top = 3.0
 margin_right = 334.0
@@ -684,7 +693,7 @@ rect_min_size = Vector2( 30, 0 )
 text = "43.9"
 align = 1
 
-[node name="Label7" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+[node name="Label7" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols2"]
 margin_left = 338.0
 margin_top = 3.0
 margin_right = 378.0
@@ -693,7 +702,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="Label8" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+[node name="Label8" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols2"]
 margin_left = 382.0
 margin_top = 3.0
 margin_right = 422.0
@@ -702,7 +711,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="Label9" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ModelCols2"]
+[node name="Label9" type="Label" parent="Main/Panes/DataAnalysisRefine/ModelCols2"]
 margin_left = 426.0
 margin_top = 3.0
 margin_right = 476.0
@@ -711,56 +720,56 @@ rect_min_size = Vector2( 50, 0 )
 text = "90.0"
 align = 1
 
-[node name="SpaceBuffer6" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="SpaceBuffer6" type="Control" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 90.0
 margin_right = 962.0
 margin_bottom = 106.0
 rect_min_size = Vector2( 0, 16 )
 
-[node name="SamplesHeader" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="SamplesHeader" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 110.0
 margin_right = 962.0
 margin_bottom = 130.0
 
-[node name="expand" type="Button" parent="ColorRect/Panes/DataAnalysisRefine/SamplesHeader"]
+[node name="expand" type="Button" parent="Main/Panes/DataAnalysisRefine/SamplesHeader"]
 margin_right = 20.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 text = "+"
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/SamplesHeader"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisRefine/SamplesHeader"]
 margin_left = 24.0
 margin_top = 3.0
 margin_right = 78.0
 margin_bottom = 17.0
 text = "Samples"
 
-[node name="SpaceBuffer4" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="SpaceBuffer4" type="Control" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 134.0
 margin_right = 962.0
 margin_bottom = 142.0
 rect_min_size = Vector2( 0, 8 )
 
-[node name="Samples" type="VBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="Samples" type="VBoxContainer" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 146.0
 margin_right = 962.0
 margin_bottom = 267.0
 
-[node name="SamplesSelection" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine/Samples"]
+[node name="SamplesSelection" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine/Samples"]
 margin_right = 962.0
 margin_bottom = 25.0
 
-[node name="selectAll" type="CheckBox" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+[node name="selectAll" type="CheckBox" parent="Main/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
 margin_right = 24.0
 margin_bottom = 25.0
 
-[node name="Control" type="Control" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+[node name="Control" type="Control" parent="Main/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
 margin_left = 28.0
 margin_right = 60.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 32, 25 )
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection/Control"]
+[node name="TextureRect" type="TextureRect" parent="Main/Panes/DataAnalysisRefine/Samples/SamplesSelection/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -772,13 +781,13 @@ texture = ExtResource( 2 )
 expand = true
 flip_h = true
 
-[node name="text" type="LineEdit" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+[node name="text" type="LineEdit" parent="Main/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
 margin_left = 64.0
 margin_right = 160.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 96, 0 )
 
-[node name="sessions" type="MenuButton" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+[node name="sessions" type="MenuButton" parent="Main/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
 margin_left = 164.0
 margin_right = 232.0
 margin_bottom = 25.0
@@ -787,7 +796,7 @@ keep_pressed_outside = true
 text = "sessions"
 flat = false
 
-[node name="tools" type="MenuButton" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+[node name="tools" type="MenuButton" parent="Main/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
 margin_left = 236.0
 margin_right = 280.0
 margin_bottom = 25.0
@@ -796,7 +805,7 @@ keep_pressed_outside = true
 text = "tools"
 flat = false
 
-[node name="status" type="MenuButton" parent="ColorRect/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
+[node name="status" type="MenuButton" parent="Main/Panes/DataAnalysisRefine/Samples/SamplesSelection"]
 margin_left = 284.0
 margin_right = 335.0
 margin_bottom = 25.0
@@ -805,22 +814,22 @@ keep_pressed_outside = true
 text = "status"
 flat = false
 
-[node name="SpaceBuffer8" type="Control" parent="ColorRect/Panes/DataAnalysisRefine/Samples"]
+[node name="SpaceBuffer8" type="Control" parent="Main/Panes/DataAnalysisRefine/Samples"]
 margin_top = 29.0
 margin_right = 962.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 8 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine/Samples"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine/Samples"]
 margin_top = 41.0
 margin_right = 962.0
 margin_bottom = 65.0
 
-[node name="selectAll" type="CheckBox" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+[node name="selectAll" type="CheckBox" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 118.0
@@ -828,7 +837,7 @@ margin_bottom = 19.0
 rect_min_size = Vector2( 90, 0 )
 text = "MtCM-x0002"
 
-[node name="Label2" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+[node name="Label2" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
 margin_left = 122.0
 margin_top = 5.0
 margin_right = 142.0
@@ -837,7 +846,7 @@ rect_min_size = Vector2( 20, 0 )
 text = "1"
 align = 1
 
-[node name="Label3" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+[node name="Label3" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
 margin_left = 146.0
 margin_top = 5.0
 margin_right = 196.0
@@ -846,7 +855,7 @@ rect_min_size = Vector2( 50, 0 )
 text = "P43212"
 align = 1
 
-[node name="Label4" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+[node name="Label4" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
 margin_left = 200.0
 margin_top = 5.0
 margin_right = 240.0
@@ -855,7 +864,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "59.76"
 align = 1
 
-[node name="Label5" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+[node name="Label5" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
 margin_left = 244.0
 margin_top = 5.0
 margin_right = 284.0
@@ -864,7 +873,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "59.76"
 align = 1
 
-[node name="Label6" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+[node name="Label6" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
 margin_left = 288.0
 margin_top = 5.0
 margin_right = 328.0
@@ -873,7 +882,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "47.55"
 align = 1
 
-[node name="Label7" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+[node name="Label7" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
 margin_left = 332.0
 margin_top = 5.0
 margin_right = 372.0
@@ -882,7 +891,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="Label8" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+[node name="Label8" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
 margin_left = 376.0
 margin_top = 5.0
 margin_right = 416.0
@@ -891,7 +900,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="Label9" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
+[node name="Label9" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer"]
 margin_left = 420.0
 margin_top = 5.0
 margin_right = 460.0
@@ -900,16 +909,16 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine/Samples"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine/Samples"]
 margin_top = 69.0
 margin_right = 962.0
 margin_bottom = 93.0
 
-[node name="selectAll" type="CheckBox" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+[node name="selectAll" type="CheckBox" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 118.0
@@ -917,7 +926,7 @@ margin_bottom = 19.0
 rect_min_size = Vector2( 90, 0 )
 text = "MtCM-x0008"
 
-[node name="Label2" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+[node name="Label2" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
 margin_left = 122.0
 margin_top = 5.0
 margin_right = 142.0
@@ -926,7 +935,7 @@ rect_min_size = Vector2( 20, 0 )
 text = "1"
 align = 1
 
-[node name="Label3" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+[node name="Label3" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
 margin_left = 146.0
 margin_top = 5.0
 margin_right = 196.0
@@ -935,7 +944,7 @@ rect_min_size = Vector2( 50, 0 )
 text = "P41212"
 align = 1
 
-[node name="Label4" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+[node name="Label4" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
 margin_left = 200.0
 margin_top = 5.0
 margin_right = 240.0
@@ -944,7 +953,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "59.93"
 align = 1
 
-[node name="Label5" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+[node name="Label5" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
 margin_left = 244.0
 margin_top = 5.0
 margin_right = 284.0
@@ -953,7 +962,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "59.93"
 align = 1
 
-[node name="Label6" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+[node name="Label6" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
 margin_left = 288.0
 margin_top = 5.0
 margin_right = 328.0
@@ -962,7 +971,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "47.06"
 align = 1
 
-[node name="Label7" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+[node name="Label7" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
 margin_left = 332.0
 margin_top = 5.0
 margin_right = 372.0
@@ -971,7 +980,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="Label8" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+[node name="Label8" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
 margin_left = 376.0
 margin_top = 5.0
 margin_right = 416.0
@@ -980,7 +989,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="Label9" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
+[node name="Label9" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer3"]
 margin_left = 420.0
 margin_top = 5.0
 margin_right = 460.0
@@ -989,16 +998,16 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine/Samples"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine/Samples"]
 margin_top = 97.0
 margin_right = 962.0
 margin_bottom = 121.0
 
-[node name="selectAll" type="CheckBox" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+[node name="selectAll" type="CheckBox" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 118.0
@@ -1006,7 +1015,7 @@ margin_bottom = 19.0
 rect_min_size = Vector2( 90, 0 )
 text = "MtCM-x0009"
 
-[node name="Label2" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+[node name="Label2" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
 margin_left = 122.0
 margin_top = 5.0
 margin_right = 142.0
@@ -1015,7 +1024,7 @@ rect_min_size = Vector2( 20, 0 )
 text = "1"
 align = 1
 
-[node name="Label3" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+[node name="Label3" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
 margin_left = 146.0
 margin_top = 5.0
 margin_right = 196.0
@@ -1024,7 +1033,7 @@ rect_min_size = Vector2( 50, 0 )
 text = "P41212"
 align = 1
 
-[node name="Label4" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+[node name="Label4" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
 margin_left = 200.0
 margin_top = 5.0
 margin_right = 240.0
@@ -1033,7 +1042,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "59.98"
 align = 1
 
-[node name="Label5" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+[node name="Label5" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
 margin_left = 244.0
 margin_top = 5.0
 margin_right = 284.0
@@ -1042,7 +1051,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "59.98"
 align = 1
 
-[node name="Label6" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+[node name="Label6" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
 margin_left = 288.0
 margin_top = 5.0
 margin_right = 328.0
@@ -1051,7 +1060,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "47.04	"
 align = 1
 
-[node name="Label7" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+[node name="Label7" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
 margin_left = 332.0
 margin_top = 5.0
 margin_right = 372.0
@@ -1060,7 +1069,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="Label8" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+[node name="Label8" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
 margin_left = 376.0
 margin_top = 5.0
 margin_right = 416.0
@@ -1069,7 +1078,7 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="Label9" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
+[node name="Label9" type="Label" parent="Main/Panes/DataAnalysisRefine/Samples/HBoxContainer4"]
 margin_left = 420.0
 margin_top = 5.0
 margin_right = 460.0
@@ -1078,39 +1087,39 @@ rect_min_size = Vector2( 40, 0 )
 text = "90.0"
 align = 1
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 271.0
 margin_right = 962.0
 margin_bottom = 291.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="ProcessingHeader" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="ProcessingHeader" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 295.0
 margin_right = 962.0
 margin_bottom = 309.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/ProcessingHeader"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisRefine/ProcessingHeader"]
 margin_right = 40.0
 margin_bottom = 14.0
 text = "Refine"
 
-[node name="SpaceBuffer2" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="SpaceBuffer2" type="Control" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 313.0
 margin_right = 962.0
 margin_bottom = 321.0
 rect_min_size = Vector2( 0, 8 )
 
-[node name="Tool" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="Tool" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 325.0
 margin_right = 962.0
 margin_bottom = 345.0
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisRefine/Tool"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/DataAnalysisRefine/Tool"]
 margin_right = 20.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/Tool"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisRefine/Tool"]
 margin_left = 24.0
 margin_top = 3.0
 margin_right = 154.0
@@ -1118,7 +1127,7 @@ margin_bottom = 17.0
 rect_min_size = Vector2( 130, 0 )
 text = "Refine with:"
 
-[node name="tool" type="OptionButton" parent="ColorRect/Panes/DataAnalysisRefine/Tool"]
+[node name="tool" type="OptionButton" parent="Main/Panes/DataAnalysisRefine/Tool"]
 margin_left = 158.0
 margin_right = 236.0
 margin_bottom = 20.0
@@ -1126,17 +1135,17 @@ text = "DIMPLE"
 items = [ "DIMPLE", null, false, 0, null, "fspipeline", null, false, 1, null ]
 selected = 0
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 349.0
 margin_right = 962.0
 margin_bottom = 373.0
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/DataAnalysisRefine/HBoxContainer4"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/DataAnalysisRefine/HBoxContainer4"]
 margin_right = 20.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="ColorRect/Panes/DataAnalysisRefine/HBoxContainer4"]
+[node name="Label" type="Label" parent="Main/Panes/DataAnalysisRefine/HBoxContainer4"]
 margin_left = 24.0
 margin_top = 5.0
 margin_right = 154.0
@@ -1144,36 +1153,36 @@ margin_bottom = 19.0
 rect_min_size = Vector2( 130, 0 )
 text = "Custom parameters"
 
-[node name="LineEdit" type="LineEdit" parent="ColorRect/Panes/DataAnalysisRefine/HBoxContainer4"]
+[node name="LineEdit" type="LineEdit" parent="Main/Panes/DataAnalysisRefine/HBoxContainer4"]
 margin_left = 158.0
 margin_right = 378.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 220, 0 )
 
-[node name="SpaceBuffer3" type="Control" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="SpaceBuffer3" type="Control" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 377.0
 margin_right = 962.0
 margin_bottom = 407.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="ProcessButton" type="HBoxContainer" parent="ColorRect/Panes/DataAnalysisRefine"]
+[node name="ProcessButton" type="HBoxContainer" parent="Main/Panes/DataAnalysisRefine"]
 margin_top = 411.0
 margin_right = 962.0
 margin_bottom = 431.0
 
-[node name="Refine" type="Button" parent="ColorRect/Panes/DataAnalysisRefine/ProcessButton"]
+[node name="Refine" type="Button" parent="Main/Panes/DataAnalysisRefine/ProcessButton"]
 margin_right = 110.0
 margin_bottom = 20.0
 grow_horizontal = 2
 text = "Refine Samples"
 
-[node name="DataAnalysisFitLigands" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="DataAnalysisFitLigands" type="CenterContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/DataAnalysisFitLigands"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Panes/DataAnalysisFitLigands"]
 margin_left = 421.0
 margin_top = 366.0
 margin_right = 541.0
@@ -1184,13 +1193,13 @@ bbcode_text = "[center] [color=#8ff]Data Analysis Ligand Fit[/color] is selected
 text = " Data Analysis Ligand Fit is selected."
 scroll_active = false
 
-[node name="DataAnalysisPandda" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="DataAnalysisPandda" type="CenterContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/DataAnalysisPandda"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Panes/DataAnalysisPandda"]
 margin_left = 421.0
 margin_top = 366.0
 margin_right = 541.0
@@ -1201,13 +1210,13 @@ bbcode_text = "[center] [color=#8ff]Data Analysis PanDDA[/color] is selected.[/c
 text = " Data Analysis PanDDA is selected."
 scroll_active = false
 
-[node name="PanddaAnalyse" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="PanddaAnalyse" type="CenterContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/PanddaAnalyse"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Panes/PanddaAnalyse"]
 margin_left = 431.0
 margin_top = 376.0
 margin_right = 531.0
@@ -1218,13 +1227,13 @@ bbcode_text = "[center] [color=#8ff]PanDDA Analyse[/color] is selected.[/center]
 text = " PanDDA Analyse is selected."
 scroll_active = false
 
-[node name="PanddaInspect" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="PanddaInspect" type="CenterContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/PanddaInspect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Panes/PanddaInspect"]
 margin_left = 431.0
 margin_top = 376.0
 margin_right = 531.0
@@ -1235,13 +1244,13 @@ bbcode_text = "[center] [color=#8ff]PanDDA Inspect[/color] is selected.[/center]
 text = " PanDDA Inspect is selected."
 scroll_active = false
 
-[node name="ProjectPDBs" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="ProjectPDBs" type="CenterContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ProjectPDBs"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Panes/ProjectPDBs"]
 margin_left = 431.0
 margin_top = 376.0
 margin_right = 531.0
@@ -1252,13 +1261,13 @@ bbcode_text = "[center] [color=#8ff]Project PDBs[/color] is selected.[/center]"
 text = " Project PDBs is selected."
 scroll_active = false
 
-[node name="ProjectDetails" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="ProjectDetails" type="CenterContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/ProjectDetails"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Panes/ProjectDetails"]
 margin_left = 431.0
 margin_top = 376.0
 margin_right = 531.0
@@ -1269,279 +1278,295 @@ bbcode_text = "[center] [color=#8ff]Project Details[/color] is selected.[/center
 text = " Project Details is selected."
 scroll_active = false
 
-[node name="Settings" type="VBoxContainer" parent="ColorRect/Panes"]
+[node name="Settings" type="VBoxContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 margin_bottom = 14.0
 alignment = 1
 script = ExtResource( 9 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/Panes/Settings"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Panes/Settings"]
 margin_right = 962.0
 margin_bottom = 20.0
 
-[node name="Button" type="Button" parent="ColorRect/Panes/Settings/HBoxContainer"]
+[node name="Button" type="Button" parent="Main/Panes/Settings/HBoxContainer"]
 margin_right = 20.0
 margin_bottom = 20.0
 text = "  "
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/HBoxContainer"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/HBoxContainer"]
 margin_left = 24.0
 margin_top = 3.0
 margin_right = 111.0
 margin_bottom = 17.0
 text = "Samples view"
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/Settings"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/Settings"]
 margin_top = 24.0
 margin_right = 962.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="SamplesViewOpts" type="HBoxContainer" parent="ColorRect/Panes/Settings"]
+[node name="SamplesViewOpts" type="HBoxContainer" parent="Main/Panes/Settings"]
 margin_top = 48.0
 margin_right = 962.0
-margin_bottom = 496.0
+margin_bottom = 524.0
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/Settings/SamplesViewOpts"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/Settings/SamplesViewOpts"]
 margin_right = 20.0
-margin_bottom = 448.0
+margin_bottom = 476.0
 rect_min_size = Vector2( 20, 20 )
 
-[node name="Options" type="VBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts"]
+[node name="Options" type="VBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts"]
 margin_left = 24.0
 margin_right = 181.0
-margin_bottom = 448.0
+margin_bottom = 476.0
 
-[node name="Label2" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="Label2" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_right = 157.0
 margin_bottom = 14.0
 text = "Show following columns:"
 
-[node name="SpaceBuffer2" type="Control" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="SpaceBuffer2" type="Control" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 18.0
 margin_right = 157.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="general" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="general" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 42.0
 margin_right = 157.0
 margin_bottom = 56.0
 text = "general"
 
-[node name="CrystalPicture" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="CrystalPicture" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 60.0
 margin_right = 157.0
 margin_bottom = 84.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/CrystalPicture"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/CrystalPicture"]
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/CrystalPicture"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/CrystalPicture"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 126.0
 margin_bottom = 19.0
 text = "crystal pictures"
 
-[node name="DozerGraph" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="DozerGraph" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 88.0
 margin_right = 157.0
 margin_bottom = 112.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/DozerGraph"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/DozerGraph"]
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/DozerGraph"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/DozerGraph"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 103.0
 margin_bottom = 19.0
 text = "dozer graph"
 
-[node name="SpaceBuffer3" type="Control" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="SpaceBuffer3" type="Control" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 116.0
 margin_right = 157.0
 margin_bottom = 136.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="processing" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="processing" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 140.0
 margin_right = 157.0
 margin_bottom = 154.0
 text = "processing"
 
-[node name="ProcSpaceGroup" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="ProcSpaceGroup" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 158.0
 margin_right = 157.0
 margin_bottom = 182.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/ProcSpaceGroup"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/ProcSpaceGroup"]
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/ProcSpaceGroup"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/ProcSpaceGroup"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 105.0
 margin_bottom = 19.0
 text = "space group"
 
-[node name="ProcMultiplicity" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="ProcMultiplicity" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 186.0
 margin_right = 157.0
 margin_bottom = 210.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/ProcMultiplicity"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/ProcMultiplicity"]
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/ProcMultiplicity"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/ProcMultiplicity"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 101.0
 margin_bottom = 19.0
 text = "multiplicity"
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="HBoxContainer6" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 214.0
 margin_right = 157.0
 margin_bottom = 238.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer6"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/HBoxContainer6"]
 margin_right = 24.0
 margin_bottom = 24.0
 disabled = true
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer6"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/HBoxContainer6"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 61.0
 margin_bottom = 19.0
 text = "I/sigI"
 
-[node name="HBoxContainer7" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 242.0
 margin_right = 157.0
 margin_bottom = 266.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer7"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/HBoxContainer7"]
 margin_right = 24.0
 margin_bottom = 24.0
 disabled = true
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer7"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/HBoxContainer7"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 77.0
 margin_bottom = 19.0
 text = "R_meas"
 
-[node name="SpaceBuffer4" type="Control" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="SpaceBuffer4" type="Control" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 270.0
 margin_right = 157.0
 margin_bottom = 290.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="refinement" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="refinement" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 294.0
 margin_right = 157.0
 margin_bottom = 308.0
 text = "refinement"
 
-[node name="RefResolution" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="RefResolution" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 312.0
 margin_right = 157.0
 margin_bottom = 336.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/RefResolution"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/RefResolution"]
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/RefResolution"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/RefResolution"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 93.0
 margin_bottom = 19.0
 text = "resolution"
 
-[node name="RefRwork" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="RefRwork" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 340.0
 margin_right = 157.0
 margin_bottom = 364.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/RefRwork"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/RefRwork"]
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/RefRwork"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/RefRwork"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 66.0
 margin_bottom = 19.0
 text = "Rwork"
 
-[node name="HBoxContainer10" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="HBoxContainer10" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 368.0
 margin_right = 157.0
 margin_bottom = 392.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer10"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/HBoxContainer10"]
 margin_right = 24.0
 margin_bottom = 24.0
 disabled = true
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer10"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/HBoxContainer10"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 61.0
 margin_bottom = 19.0
 text = "Rfree"
 
-[node name="HBoxContainer11" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="HBoxContainer11" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 396.0
 margin_right = 157.0
 margin_bottom = 420.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer11"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/HBoxContainer11"]
 margin_right = 24.0
 margin_bottom = 24.0
 disabled = true
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer11"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/HBoxContainer11"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 98.0
 margin_bottom = 19.0
 text = "RMS bonds"
 
-[node name="HBoxContainer12" type="HBoxContainer" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options"]
+[node name="HBoxContainer12" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
 margin_top = 424.0
 margin_right = 157.0
 margin_bottom = 448.0
 
-[node name="CheckBox" type="CheckBox" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer12"]
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/HBoxContainer12"]
 margin_right = 24.0
 margin_bottom = 24.0
 disabled = true
 
-[node name="Label" type="Label" parent="ColorRect/Panes/Settings/SamplesViewOpts/Options/HBoxContainer12"]
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/HBoxContainer12"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 100.0
 margin_bottom = 19.0
 text = "RMS angles"
 
-[node name="Libraries" type="CenterContainer" parent="ColorRect/Panes"]
+[node name="Structure" type="HBoxContainer" parent="Main/Panes/Settings/SamplesViewOpts/Options"]
+margin_top = 452.0
+margin_right = 157.0
+margin_bottom = 476.0
+
+[node name="CheckBox" type="CheckBox" parent="Main/Panes/Settings/SamplesViewOpts/Options/Structure"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Main/Panes/Settings/SamplesViewOpts/Options/Structure"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 86.0
+margin_bottom = 19.0
+text = "structure"
+
+[node name="Libraries" type="CenterContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panes/Libraries"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Panes/Libraries"]
 margin_left = 431.0
 margin_top = 376.0
 margin_right = 531.0
@@ -1552,13 +1577,13 @@ bbcode_text = "[center] [color=#8ff]Libraries[/color] is selected.[/center]"
 text = " Libraries is selected."
 scroll_active = false
 
-[node name="Jobs" type="VBoxContainer" parent="ColorRect/Panes"]
+[node name="Jobs" type="VBoxContainer" parent="Main/Panes"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 11 )
 
-[node name="ActiveJobs" type="RichTextLabel" parent="ColorRect/Panes/Jobs"]
+[node name="ActiveJobs" type="RichTextLabel" parent="Main/Panes/Jobs"]
 margin_right = 962.0
 margin_bottom = 20.0
 custom_fonts/bold_font = SubResource( 2 )
@@ -1567,34 +1592,34 @@ bbcode_text = "[b]Active Jobs[/b]"
 text = "Active Jobs"
 fit_content_height = true
 
-[node name="ActiveJobSets" type="VBoxContainer" parent="ColorRect/Panes/Jobs"]
+[node name="ActiveJobSets" type="VBoxContainer" parent="Main/Panes/Jobs"]
 margin_top = 24.0
 margin_right = 962.0
 margin_bottom = 24.0
 
-[node name="SpaceBuffer" type="Control" parent="ColorRect/Panes/Jobs"]
+[node name="SpaceBuffer" type="Control" parent="Main/Panes/Jobs"]
 margin_top = 28.0
 margin_right = 962.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 0, 8 )
 
-[node name="abortContainer" type="HBoxContainer" parent="ColorRect/Panes/Jobs"]
+[node name="abortContainer" type="HBoxContainer" parent="Main/Panes/Jobs"]
 margin_top = 40.0
 margin_right = 962.0
 margin_bottom = 60.0
 
-[node name="abort" type="Button" parent="ColorRect/Panes/Jobs/abortContainer"]
+[node name="abort" type="Button" parent="Main/Panes/Jobs/abortContainer"]
 margin_right = 84.0
 margin_bottom = 20.0
 text = "abort job(s)"
 
-[node name="SpaceBuffer2" type="Control" parent="ColorRect/Panes/Jobs"]
+[node name="SpaceBuffer2" type="Control" parent="Main/Panes/Jobs"]
 margin_top = 64.0
 margin_right = 962.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 0, 8 )
 
-[node name="FinishedJobs" type="RichTextLabel" parent="ColorRect/Panes/Jobs"]
+[node name="FinishedJobs" type="RichTextLabel" parent="Main/Panes/Jobs"]
 margin_top = 76.0
 margin_right = 962.0
 margin_bottom = 96.0
@@ -1604,7 +1629,275 @@ bbcode_text = "[b]Finished Jobs[/b]"
 text = "Finished Jobs"
 fit_content_height = true
 
-[node name="FinishedJobSets" type="VBoxContainer" parent="ColorRect/Panes/Jobs"]
+[node name="FinishedJobSets" type="VBoxContainer" parent="Main/Panes/Jobs"]
 margin_top = 100.0
 margin_right = 962.0
 margin_bottom = 100.0
+
+[node name="Structure" type="ColorRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -600.0
+margin_top = -400.0
+margin_right = 600.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 1200, 800 )
+color = Color( 0.177246, 0.472656, 0.446145, 1 )
+script = ExtResource( 12 )
+
+[node name="info" type="VBoxContainer" parent="Structure"]
+margin_left = 71.0
+margin_top = 125.0
+margin_right = 361.0
+margin_bottom = 641.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Structure/info"]
+margin_right = 290.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer"]
+margin_right = 120.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 120, 0 )
+text = "Space group:"
+
+[node name="Label2" type="Label" parent="Structure/info/HBoxContainer"]
+margin_left = 124.0
+margin_right = 172.0
+margin_bottom = 14.0
+text = "P43212"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Structure/info"]
+margin_top = 18.0
+margin_right = 290.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer3"]
+margin_right = 120.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 120, 0 )
+text = "Resolution:"
+
+[node name="Label2" type="Label" parent="Structure/info/HBoxContainer3"]
+margin_left = 124.0
+margin_right = 152.0
+margin_bottom = 14.0
+text = "2.15"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Structure/info"]
+margin_top = 36.0
+margin_right = 290.0
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer2"]
+margin_right = 120.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 120, 0 )
+text = "Rwork:"
+
+[node name="Label2" type="Label" parent="Structure/info/HBoxContainer2"]
+margin_left = 124.0
+margin_right = 152.0
+margin_bottom = 14.0
+text = "0.24"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Structure/info"]
+margin_top = 54.0
+margin_right = 290.0
+margin_bottom = 68.0
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer5"]
+margin_right = 120.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 120, 0 )
+text = "LigFit score:"
+
+[node name="Label2" type="Label" parent="Structure/info/HBoxContainer5"]
+margin_left = 124.0
+margin_right = 160.0
+margin_bottom = 14.0
+text = "0.603"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Structure/info"]
+margin_top = 72.0
+margin_right = 290.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer6"]
+margin_right = 120.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 120, 0 )
+text = "RhoFit score:"
+
+[node name="Label2" type="Label" parent="Structure/info/HBoxContainer6"]
+margin_left = 124.0
+margin_right = 160.0
+margin_bottom = 14.0
+text = "0.743"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Structure/info"]
+margin_top = 90.0
+margin_right = 290.0
+margin_bottom = 104.0
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer4"]
+margin_right = 120.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 120, 0 )
+text = "Download:"
+
+[node name="Label2" type="Label" parent="Structure/info/HBoxContainer4"]
+margin_left = 124.0
+margin_right = 193.0
+margin_bottom = 14.0
+text = "PDB | MTZ"
+
+[node name="SpaceBuffer4" type="Control" parent="Structure/info"]
+margin_top = 108.0
+margin_right = 290.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 0, 8 )
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Structure/info"]
+margin_top = 120.0
+margin_right = 290.0
+margin_bottom = 134.0
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer7"]
+margin_right = 120.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 120, 0 )
+text = "blob"
+
+[node name="Label2" type="Label" parent="Structure/info/HBoxContainer7"]
+margin_left = 124.0
+margin_right = 141.0
+margin_bottom = 14.0
+text = "#1"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="Structure/info"]
+margin_top = 138.0
+margin_right = 290.0
+margin_bottom = 152.0
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer8"]
+margin_right = 120.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 120, 0 )
+text = "blob"
+
+[node name="Label2" type="Label" parent="Structure/info/HBoxContainer8"]
+margin_left = 124.0
+margin_right = 141.0
+margin_bottom = 14.0
+text = "#2"
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="Structure/info"]
+margin_top = 156.0
+margin_right = 290.0
+margin_bottom = 170.0
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer9"]
+margin_right = 120.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 120, 0 )
+text = "blob"
+
+[node name="Label2" type="Label" parent="Structure/info/HBoxContainer9"]
+margin_left = 124.0
+margin_right = 141.0
+margin_bottom = 14.0
+text = "#3"
+
+[node name="SpaceBuffer5" type="Control" parent="Structure/info"]
+margin_top = 174.0
+margin_right = 290.0
+margin_bottom = 182.0
+rect_min_size = Vector2( 0, 8 )
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="Structure/info"]
+margin_top = 186.0
+margin_right = 290.0
+margin_bottom = 210.0
+
+[node name="CheckBox" type="CheckBox" parent="Structure/info/HBoxContainer10"]
+margin_right = 24.0
+margin_bottom = 24.0
+pressed = true
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer10"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 148.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 120, 0 )
+text = "LigFit"
+
+[node name="Button" type="Button" parent="Structure/info/HBoxContainer10"]
+margin_left = 152.0
+margin_right = 179.0
+margin_bottom = 24.0
+text = "go"
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="Structure/info"]
+margin_top = 214.0
+margin_right = 290.0
+margin_bottom = 238.0
+
+[node name="CheckBox" type="CheckBox" parent="Structure/info/HBoxContainer11"]
+margin_right = 24.0
+margin_bottom = 24.0
+pressed = true
+
+[node name="Label" type="Label" parent="Structure/info/HBoxContainer11"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 148.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 120, 0 )
+text = "RhoFit"
+
+[node name="Button" type="Button" parent="Structure/info/HBoxContainer11"]
+margin_left = 152.0
+margin_right = 179.0
+margin_bottom = 24.0
+text = "go"
+
+[node name="SpaceBuffer6" type="Control" parent="Structure/info"]
+margin_top = 242.0
+margin_right = 290.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 0, 8 )
+
+[node name="TextureRect" type="TextureRect" parent="Structure/info"]
+margin_top = 254.0
+margin_right = 290.0
+margin_bottom = 434.0
+rect_min_size = Vector2( 0, 180 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Structure/info"]
+margin_top = 438.0
+margin_right = 290.0
+margin_bottom = 452.0
+text = "VT00260"
+align = 1
+
+[node name="density" type="TextureRect" parent="Structure"]
+margin_left = 449.0
+margin_top = 99.0
+margin_right = 1130.0
+margin_bottom = 731.0
+texture = ExtResource( 13 )
+
+[node name="close" type="Button" parent="Structure"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -20.0
+margin_bottom = 20.0
+text = "X"

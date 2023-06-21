@@ -49,6 +49,12 @@ enum Actions {
 
     # change job's progress status
     SET_JOB_PROGRESS,
+
+    # show 'density view' pop-up
+    SHOW_CRYSTAL_STRUCTURE,
+
+    # hide 'density view' pop-up
+    HIDE_CRYSTAL_STRUCTURE,
 }
 
 
@@ -82,6 +88,7 @@ class SettingsUI:
         "proc_space_group" : true,
         "proc_multiplicity" : false,
         # refinement section
+        "structure" : true,
         "ref_resolution" : true,
         "ref_rwork" : false,
     }
@@ -93,6 +100,7 @@ class UI:
     var expanded_job_sets = utils.Set.new()
     var process = ProcessUI.new()
     var settings = SettingsUI.new()
+    var visible_crystal_structure = null
 
 
 class RefineResult:
@@ -509,6 +517,9 @@ func do(action, arg):
             _toggle_jobs_set_expand(arg)
         Actions.SET_JOB_PROGRESS:
             _set_job_progress(arg[0], arg[1], arg[2])
+        Actions.SHOW_CRYSTAL_STRUCTURE:
+            state.ui.visible_crystal_structure = arg
+        Actions.HIDE_CRYSTAL_STRUCTURE:
+            state.ui.visible_crystal_structure = null
 
     self.call_deferred("_emit_model_updated_signal")
-
