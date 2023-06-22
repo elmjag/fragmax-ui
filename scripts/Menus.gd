@@ -12,6 +12,7 @@ func _ready():
     utils.model_connect(self, "_model_updated")
 
     _connect_menu(get_node("Samples"))
+    _connect_menu(find_node("SamplesImport"), "SamplesImport")
     _connect_menu(get_node("DataAnalysis"), "DataAnalysisProcess")
     _connect_menu(find_node("DataAnalysisProcess"), "DataAnalysisProcess")
     _connect_menu(find_node("DataAnalysisRefine"), "DataAnalysisRefine")
@@ -49,13 +50,17 @@ func _model_updated(state):
         submenu = null
 
     match new_pane:
+        "Samples", \
+        "SamplesImport":
+            submenu = get_node("SamplesSubmenu")
         "DataAnalysisProcess", \
         "DataAnalysisRefine", \
         "DataAnalysisFitLigands", \
         "DataAnalysisPandda":
             submenu = get_node("DataAnalysisSubmenu")
         "PanddaAnalyse", \
-        "PanddaInspect":
+        "PanddaInspect", \
+        "PanddaDownload":
             submenu = get_node("PanDDASubmenu")
         "ProjectPDBs", \
         "ProjectDetails", \

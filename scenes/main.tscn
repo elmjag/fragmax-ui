@@ -77,6 +77,29 @@ margin_right = 161.0
 margin_bottom = 20.0
 text = "Samples"
 
+[node name="SamplesSubmenu" type="HBoxContainer" parent="Main/Menus/Menus"]
+visible = false
+margin_top = 24.0
+margin_right = 161.0
+margin_bottom = 44.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/Menus/Menus/SamplesSubmenu"]
+margin_right = 10.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Menus/Menus/SamplesSubmenu"]
+margin_left = 14.0
+margin_right = 161.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -244, -85 )
+size_flags_horizontal = 3
+
+[node name="SamplesImport" type="Button" parent="Main/Menus/Menus/SamplesSubmenu/VBoxContainer"]
+margin_right = 147.0
+margin_bottom = 20.0
+text = "Import"
+
 [node name="DataAnalysis" type="Button" parent="Main/Menus/Menus"]
 margin_top = 24.0
 margin_right = 161.0
@@ -218,10 +241,16 @@ margin_right = 161.0
 margin_bottom = 164.0
 text = "Jobs"
 
-[node name="Logout" type="Button" parent="Main/Menus/Menus"]
+[node name="SpaceBuffer" type="Control" parent="Main/Menus/Menus"]
 margin_top = 168.0
 margin_right = 161.0
-margin_bottom = 188.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Logout" type="Button" parent="Main/Menus/Menus"]
+margin_top = 204.0
+margin_right = 161.0
+margin_bottom = 224.0
 text = "Logout"
 
 [node name="Panes" type="Control" parent="Main"]
@@ -328,6 +357,49 @@ margin_right = 883.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 1 )
 text = "dozer"
+
+[node name="SamplesImport" type="Control" parent="Main/Panes"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Panes/SamplesImport"]
+margin_left = 47.0
+margin_top = 32.0
+margin_right = 294.0
+margin_bottom = 54.0
+bbcode_text = "Import Additional Samples"
+text = "Import Additional Samples"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Panes/SamplesImport"]
+margin_left = 47.0
+margin_top = 80.0
+margin_right = 236.0
+margin_bottom = 176.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Panes/SamplesImport/VBoxContainer"]
+margin_right = 189.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="Main/Panes/SamplesImport/VBoxContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 90.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 90, 0 )
+text = "Crystals CSV:"
+
+[node name="Button" type="Button" parent="Main/Panes/SamplesImport/VBoxContainer/HBoxContainer"]
+margin_left = 94.0
+margin_right = 172.0
+margin_bottom = 20.0
+text = "Chose File"
+
+[node name="Button" type="Button" parent="Main/Panes/SamplesImport"]
+margin_left = 120.0
+margin_top = 174.0
+margin_right = 193.0
+margin_bottom = 194.0
+text = "Import"
 
 [node name="DataAnalysisProcess" type="VBoxContainer" parent="Main/Panes"]
 visible = false
