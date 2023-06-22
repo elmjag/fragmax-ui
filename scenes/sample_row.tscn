@@ -15,12 +15,13 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 20, 0 )
 text = "+"
 
-[node name="crystal" type="Label" parent="."]
+[node name="crystal" type="LinkButton" parent="."]
 margin_left = 24.0
 margin_top = 9.0
 margin_right = 124.0
 margin_bottom = 23.0
 rect_min_size = Vector2( 100, 0 )
+size_flags_vertical = 4
 
 [node name="run" type="Label" parent="."]
 margin_left = 128.0

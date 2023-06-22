@@ -73,6 +73,11 @@ func _on_structure_click(event, crystal_id):
 
     model.do(Model.Actions.SHOW_CRYSTAL_STRUCTURE, crystal_id)
 
+
+func _on_crystal_details(crystal_id, dataset_run):
+    model.do(Model.Actions.SHOW_DATASET_DETAILS, [crystal_id, dataset_run])
+
+
 func _get_row(crystal, expanded, show):
     var desc = _selected_desc(crystal.selected)
 
@@ -83,6 +88,8 @@ func _get_row(crystal, expanded, show):
 
     children[0].text = utils.expand_toggle_text(expanded)
     children[0].connect("pressed", self, "_on_sample_expand_toggle", [crystal.id])
+
+    children[1].connect("pressed", self, "_on_crystal_details", [crystal.id, dataset.run])
     children[1].text = crystal.id
     children[2].text = str(dataset.run)
 
@@ -142,6 +149,7 @@ func _get_option_row(crystal, button_group, option):
     children[0].pressed = (crystal.selected == option)
     children[0].connect("toggled", self, "_on_sample_option_toggled", [crystal, option])
     children[1].text = crystal.id
+    children[1].connect("pressed", self, "_on_crystal_details", [crystal.id, dataset.run])
     children[2].text = str(dataset.run)
 
     if desc.proc_res != null:

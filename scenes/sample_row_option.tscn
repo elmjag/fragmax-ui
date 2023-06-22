@@ -13,12 +13,13 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 40, 0 )
 group = SubResource( 3 )
 
-[node name="crystal" type="Label" parent="."]
+[node name="crystal" type="LinkButton" parent="."]
 margin_left = 44.0
 margin_top = 9.0
 margin_right = 144.0
 margin_bottom = 23.0
 rect_min_size = Vector2( 100, 0 )
+size_flags_vertical = 4
 
 [node name="run" type="Label" parent="."]
 margin_left = 148.0

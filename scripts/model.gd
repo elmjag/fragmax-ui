@@ -55,6 +55,12 @@ enum Actions {
 
     # hide 'density view' pop-up
     HIDE_CRYSTAL_STRUCTURE,
+
+    # show 'dataset details' pop-up
+    SHOW_DATASET_DETAILS,
+
+    # hide 'dataset details' pop-up
+    HIDE_DATASET_DETAILS,
 }
 
 
@@ -101,6 +107,7 @@ class UI:
     var process = ProcessUI.new()
     var settings = SettingsUI.new()
     var visible_crystal_structure = null
+    var visible_dataset_details = null
 
 
 class RefineResult:
@@ -521,5 +528,9 @@ func do(action, arg):
             state.ui.visible_crystal_structure = arg
         Actions.HIDE_CRYSTAL_STRUCTURE:
             state.ui.visible_crystal_structure = null
+        Actions.SHOW_DATASET_DETAILS:
+            state.ui.visible_dataset_details = arg
+        Actions.HIDE_DATASET_DETAILS:
+            state.ui.visible_dataset_details = null
 
     self.call_deferred("_emit_model_updated_signal")
