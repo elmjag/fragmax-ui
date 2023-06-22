@@ -20,6 +20,7 @@ func _ready():
     _connect_menu(get_node("PanDDA"), "PanddaAnalyse")
     _connect_menu(find_node("PanddaAnalyse"))
     _connect_menu(find_node("PanddaInspect"))
+    _connect_menu(find_node("PanddaDownload"))
     _connect_menu(get_node("Project"), "ProjectPDBs")
     _connect_menu(find_node("ProjectPDBs"))
     _connect_menu(find_node("ProjectDetails"))
